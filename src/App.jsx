@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import HeaderOPEN from './Components/HeaderOPEN.jsx'
 import NavbarOPEN from './Components/NavbarOPEN.jsx'
 import Footer from './Components/Footer.jsx'
+import Breadcrumbs from './Components/Breadcrumbs.jsx'
 import Landing from './Pages/Landing.jsx'
 import About from './Pages/About.jsx'
 import AboutCentralLibrary from './Pages/AboutCentralLibrary.jsx'
@@ -15,12 +16,16 @@ import Activity from './Pages/Activity.jsx'
 import EResources from './Pages/EResources.jsx'
 import OpenAccessResources from './Pages/OpenAccessResources.jsx'
 import MembershipProtocol from './Pages/MembershipProtocol.jsx'
+import AskALibrarian from './Pages/AskALibrarian.jsx'
+import ServicesFacilities from './Pages/ServicesFacilities.jsx'
+import NewsEvents from './Pages/NewsEvents.jsx'
 
 function App() {
   return (
     <div className="min-h-screen bg-slate-50">
       <HeaderOPEN />
       <NavbarOPEN />
+      <Breadcrumbs />
       <main className="max-w-7xl mx-auto px-4 md:px-8 pt-2 pb-12 md:pt-4 md:pb-16">
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -31,6 +36,9 @@ function App() {
           <Route path="/about/message-from-librarian" element={<MessageFromLibrarian />} />
           <Route path="/about/library-committee" element={<LibraryCommittee />} />
           <Route path="/about/procurement-procedure" element={<ProcurementProcedure />} />
+          <Route path="/about/ask-a-librarian" element={<AskALibrarian />} />
+          <Route path="/services-facilities" element={<ServicesFacilities />} />
+          <Route path="/news-events" element={<NewsEvents />} />
           <Route path="/activity" element={<Activity />} />
           <Route path="/e-resources" element={<EResources />} />
           <Route path="/open-access-resources" element={<OpenAccessResources />} />

@@ -7,7 +7,7 @@ const VisionMission = () => {
         
         {/* Header Section */}
         <div className="border-b border-slate-200 pb-2 mb-12">
-          <h1 className="text-xs font-black uppercase tracking-[0.4em] text-blue-800">
+          <h1 className="text-xs font-black uppercase tracking-[0.2em] text-blue-800">
             Institutional Mandate
           </h1>
         </div>

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Search } from 'lucide-react'
 
 const AccessItem = ({ title, desc }) => (
   <li className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
@@ -11,6 +12,10 @@ const AccessItem = ({ title, desc }) => (
 );
 
 const EResources = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeLetter, setActiveLetter] = useState('All');
+  
+  const alphabets = ['All', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
   const resources = [
     { name: "ProQuest One Academic", img: "/proquest one.jpeg", type: "Database" },
     { name: "Scopus", img: "/scopus.png", type: "Abstract & Citation DB" },
@@ -23,12 +28,18 @@ const EResources = () => {
     { name: "DELNET", img: "/delnet.png", type: "Resource Sharing" }
   ];
 
+  const filteredResources = resources.filter(res => {
+    const matchesSearch = res.name.toLowerCase().includes(searchTerm.toLowerCase()) || res.type.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesLetter = activeLetter === 'All' || res.name.toUpperCase().startsWith(activeLetter);
+    return matchesSearch && matchesLetter;
+  });
+
   return (
-    <div className="bg-slate-50 min-h-screen font-sans antialiased py-8 text-slate-800">
+    <div className="bg-slate-50 min-h-screen font-sans antialiased pb-8 text-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-primary uppercase bg-accent/20 rounded-full border border-accent/20">
             Digital Library
           </div>
@@ -40,39 +51,81 @@ const EResources = () => {
           </p>
         </div>
 
-        {/* Resources Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 mb-20">
-          {resources.map((item, idx) => (
-            <div 
-              key={idx} 
-              className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 flex flex-col items-center justify-between h-64 relative overflow-hidden"
-            >
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary-light transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-              
-              <div className="flex-1 flex items-center justify-center w-full p-2">
-                <img 
-                  src={item.img} 
-                  alt={item.name} 
-                  className="max-h-24 w-auto object-contain filter group-hover:brightness-110 transition-all duration-300"
-                />
-              </div>
-              
-              <div className="text-center w-full mt-4 border-t border-slate-50 pt-4">
-                <h3 className="font-bold text-slate-800 group-hover:text-primary transition-colors truncate w-full">
-                  {item.name}
-                </h3>
-                <p className="text-sm font-medium text-slate-400 uppercase tracking-wide mt-1">
-                  {item.type}
-                </p>
-                {item.sub && (
-                  <span className="inline-block mt-2 px-2 py-0.5 bg-amber-50 text-amber-700 text-[10px] font-bold rounded-full border border-amber-100">
-                    {item.sub}
-                  </span>
-                )}
-              </div>
+        {/* Search & Filter Section */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="relative mb-6 group">
+            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-slate-400 group-focus-within:text-primary transition-colors" />
             </div>
-          ))}
+            <input 
+              type="text" 
+              placeholder="Search by database name or type..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full py-4 pl-12 pr-4 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary shadow-sm bg-white"
+            />
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-1.5 md:gap-2">
+            {alphabets.map(letter => (
+              <button 
+                key={letter}
+                onClick={() => setActiveLetter(letter)}
+                className={`px-3 py-1.5 min-w-[32px] rounded text-sm font-bold flex items-center justify-center transition-all ${activeLetter === letter ? 'bg-primary text-white shadow-md' : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-primary border border-slate-200'}`}
+              >
+                {letter}
+              </button>
+            ))}
+          </div>
         </div>
+
+        {/* Resources Grid */}
+        {filteredResources.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 mb-20">
+            {filteredResources.map((item, idx) => (
+              <div 
+                key={idx} 
+                className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 flex flex-col items-center justify-between h-64 relative overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary-light transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                
+                <div className="flex-1 flex items-center justify-center w-full p-2">
+                  <img 
+                    src={item.img} 
+                    alt={item.name} 
+                    className="max-h-24 w-auto object-contain filter group-hover:brightness-110 transition-all duration-300"
+                  />
+                </div>
+                
+                <div className="text-center w-full mt-4 border-t border-slate-50 pt-4">
+                  <h3 className="font-bold text-slate-800 group-hover:text-primary transition-colors truncate w-full" title={item.name}>
+                    {item.name}
+                  </h3>
+                  <p className="text-sm font-medium text-slate-400 uppercase tracking-wide mt-1 truncate">
+                    {item.type}
+                  </p>
+                  {item.sub && (
+                    <span className="inline-block mt-2 px-2 py-0.5 bg-amber-50 text-amber-700 text-[10px] font-bold rounded-full border border-amber-100">
+                      {item.sub}
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20 mb-20 bg-white rounded-3xl border border-slate-100 border-dashed">
+            <Search className="h-12 w-12 text-slate-300 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-slate-700">No resources found</h3>
+            <p className="text-slate-500 mt-2">Try adjusting your search or filter criteria.</p>
+            <button 
+               onClick={() => {setSearchTerm(''); setActiveLetter('All');}}
+               className="mt-6 px-6 py-2 bg-primary/10 text-primary hover:bg-primary hover:text-white font-bold rounded-lg transition-colors"
+            >
+               Clear Filters
+            </button>
+          </div>
+        )}
 
         {/* Access Info Section */}
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">

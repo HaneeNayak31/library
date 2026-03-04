@@ -8,16 +8,18 @@ const aboutSubLinks = [
   { label: 'Message from VC', path: '/about/message-from-vc' },
   { label: 'Message from Librarian', path: '/about/message-from-librarian' },
   { label: 'Library Committee', path: '/about/library-committee' },
-  { label: 'Central Library Procurement Operating Procedure', path: 'https://www.gtuelibrary.edu.in/PDFFolder/LibraryProcurementOperatingProcedure.pdf' },
+  { label: 'Procurement Procedure', path: 'https://www.gtuelibrary.edu.in/PDFFolder/LibraryProcurementOperatingProcedure.pdf' },
 ];
 
 const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'About', path: '/about', hasDropdown: true },
-  { label: 'Activity', path: '/activity' },
+  { label: 'Services', path: '/services-facilities' },
+  { label: 'News & Events', path: '/news-events' },
   { label: 'E-Resources', path: '/e-resources' },
-  { label: 'Open Access Resources', path: '/open-access-resources' },
-  { label: 'Membership & Protocol', path: '/membership-protocol' },
+  { label: 'Open Access', path: '/open-access-resources' },
+  { label: 'Membership', path: '/membership-protocol' },
+  { label: 'Help Desk', path: '/about/ask-a-librarian' },
 ];
 
 const NavbarOPEN = () => {
@@ -40,7 +42,7 @@ const NavbarOPEN = () => {
                 <NavLink
                   to={path}
                   className={({ isActive }) =>
-                    `relative flex items-center px-4 text-sm font-bold uppercase tracking-wider border-r border-white/10 first:border-l group transition-all duration-300 hover:bg-white/5 h-full ${
+                    `relative flex items-center px-4 md:px-5 text-[12px] lg:text-[15px] font-bold  tracking-widest border-r border-white/10 first:border-l group transition-all duration-300 hover:bg-white/5 h-full ${
                       isActive ? 'text-accent' : ''
                     }`
                   }
@@ -76,8 +78,8 @@ const NavbarOPEN = () => {
                           key={subLink.path}
                           {...linkProps}
                           className={({ isActive }) =>
-                            `block px-5 py-3 text-sm font-semibold uppercase tracking-wider border-b border-white/5 hover:bg-white/10 hover:pl-6 hover:text-accent transition-all duration-200 ${
-                              (!isExternal && isActive) ? 'bg-white/10 text-accent' : ''
+                            `block px-5 py-3 text-[15px] font-bold tracking-normal border-b border-white/5 hover:bg-white/10 hover:pl-6 hover:text-accent transition-all duration-200 ${
+                              isActive ? 'bg-white/10 text-accent' : ''
                             }`
                           }
                         >

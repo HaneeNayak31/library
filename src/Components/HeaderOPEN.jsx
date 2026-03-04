@@ -25,15 +25,23 @@ function HeaderOPEN() {
             </div>
           </div>
 
-          {/* Right: Central Library focus */}
-          <div className="relative group px-6 py-2 w-full md:w-auto flex justify-center md:justify-end">
-            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-accent rounded-tl-sm transition-all duration-300 group-hover:scale-110"></div>
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-accent rounded-br-sm transition-all duration-300 group-hover:scale-110"></div>
+          {/* Right: Central Library focus & Hours */}
+          <div className="flex flex-col items-center md:items-end gap-2 w-full md:w-auto">
+            {/* Sticky Hours Widget */}
+            <div className="bg-primary-light/10 text-primary text-xs font-bold px-4 py-1.5 rounded-full flex items-center gap-2 border border-primary/10">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Open Today: 10:30 AM - 6:10 PM
+            </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl text-primary uppercase tracking-tighter leading-none flex items-center gap-3">
-              <span className="font-light text-primary-light">CENTRAL</span>
-              <span className="text-primary drop-shadow-sm font-bold">LIBRARY</span>
-            </h1>
+            <div className="relative group px-6 py-2 flex justify-center md:justify-end mt-1">
+              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-accent rounded-tl-sm transition-all duration-300 group-hover:scale-110"></div>
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-accent rounded-br-sm transition-all duration-300 group-hover:scale-110"></div>
+
+              <h1 className="text-3xl md:text-4xl lg:text-5xl text-primary uppercase tracking-tighter leading-none flex items-center gap-3">
+                <span className="font-light text-primary-light">CENTRAL</span>
+                <span className="text-primary drop-shadow-sm font-bold">LIBRARY</span>
+              </h1>
+            </div>
           </div>
 
         </div>

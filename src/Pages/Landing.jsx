@@ -41,6 +41,19 @@ function Landing() {
             <a href="#" className="hover:text-accent transition-colors underline decoration-accent/50 underline-offset-4">Pharmacy</a>
             <a href="#" className="hover:text-accent transition-colors underline decoration-accent/50 underline-offset-4">Applied Sciences</a>
           </div>
+
+          {/* Quick Tasks */}
+          <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap justify-center gap-4">
+            <a href="#" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-xl font-bold transition-all backdrop-blur-sm border border-white/5 hover:border-white/20 hover:-translate-y-1">
+              <BookOpen size={18} className="text-accent" /> Book a Room
+            </a>
+            <a href="/about/ask-a-librarian" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-xl font-bold transition-all backdrop-blur-sm border border-white/5 hover:border-white/20 hover:-translate-y-1">
+              <Users size={18} className="text-accent" /> Ask a Librarian
+            </a>
+            <a href="#" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-xl font-bold transition-all backdrop-blur-sm border border-white/5 hover:border-white/20 hover:-translate-y-1">
+              <Clock size={18} className="text-accent" /> My Account
+            </a>
+          </div>
         </div>
       </div>
 

@@ -6,8 +6,8 @@
   --color-accent: #FFD700;
   --color-accent-hover: #E5C100;
   
-  --font-serif: "Merriweather", serif;
-  --font-sans: "Open Sans", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
 }
 
 body {
