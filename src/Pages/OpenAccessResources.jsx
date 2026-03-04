@@ -15,10 +15,10 @@ const OpenAccessResources = () => {
         
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-emerald-600 uppercase bg-emerald-100 rounded-full">
+          <div className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-primary uppercase bg-accent/20 rounded-full border border-accent/20">
             Free Access
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-primary tracking-tight mb-4 font-serif">
             Open Access Resources
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed">
@@ -33,7 +33,7 @@ const OpenAccessResources = () => {
               key={idx} 
               className="group w-full bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden h-64 flex flex-col items-center justify-between border border-slate-100"
             >
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-primary-light transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
               
               <div className="flex-1 flex items-center justify-center w-full p-2">
                  <img 
@@ -44,10 +44,10 @@ const OpenAccessResources = () => {
               </div>
 
               <div className="text-center w-full mt-4 border-t border-slate-50 pt-4">
-                <h3 className="text-lg font-bold text-slate-800 mb-1 group-hover:text-emerald-600 transition-colors truncate w-full">
+                <h3 className="text-lg font-bold text-slate-800 mb-1 group-hover:text-primary transition-colors truncate w-full">
                   {item.name}
                 </h3>
-                 <p className="text-xs font-medium text-slate-400 uppercase tracking-wide">
+                 <p className="text-sm font-medium text-slate-400 uppercase tracking-wide">
                    {item.sub}
                  </p>
               </div>
@@ -56,13 +56,13 @@ const OpenAccessResources = () => {
         </div>
 
          {/* Info Banner */}
-         <div className="max-w-4xl mx-auto bg-white rounded-2xl p-8 border-l-4 border-emerald-500 shadow-md">
+         <div className="max-w-4xl mx-auto bg-white rounded-2xl p-8 border-l-4 border-accent shadow-md">
            <div className="flex items-start gap-4">
-             <div className="p-3 bg-emerald-100 rounded-full text-emerald-600">
+             <div className="p-3 bg-accent/20 rounded-full text-primary">
                <svg className="w-6 h-6" fill="npmne" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
              </div>
              <div>
-               <h4 className="text-lg font-bold text-slate-800 mb-2">Why Open Access?</h4>
+               <h4 className="text-lg font-bold text-slate-800 mb-2 font-serif">Why Open Access?</h4>
                <p className="text-slate-600 leading-relaxed text-sm">
                  Open Access (OA) facilitates unrestricted access to scholarly information. It promotes global knowledge exchange and allows students and researchers to access high-quality resources without financial barriers.
                </p>

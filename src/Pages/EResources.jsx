@@ -1,10 +1,10 @@
 import React from 'react'
 
 const AccessItem = ({ title, desc }) => (
-  <li className="flex items-start gap-3 p-3 rounded-lg hover:bg-blue-50 transition-colors">
-    <div className="mt-1 min-w-[6px] h-[6px] rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]"></div>
+  <li className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
+    <div className="mt-1 min-w-[6px] h-[6px] rounded-full bg-accent shadow-[0_0_8px_rgba(255,215,0,0.6)]"></div>
     <div className="text-sm text-slate-700">
-      <span className="font-bold text-slate-900 block mb-1">{title}</span>
+      <span className="font-bold text-primary block mb-1">{title}</span>
       {desc}
     </div>
   </li>
@@ -29,10 +29,10 @@ const EResources = () => {
         
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-blue-600 uppercase bg-blue-100 rounded-full">
+          <div className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-primary uppercase bg-accent/20 rounded-full border border-accent/20">
             Digital Library
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-primary tracking-tight mb-4 font-serif">
             E-Resources
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed">
@@ -47,7 +47,7 @@ const EResources = () => {
               key={idx} 
               className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 flex flex-col items-center justify-between h-64 relative overflow-hidden"
             >
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary-light transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
               
               <div className="flex-1 flex items-center justify-center w-full p-2">
                 <img 
@@ -58,10 +58,10 @@ const EResources = () => {
               </div>
               
               <div className="text-center w-full mt-4 border-t border-slate-50 pt-4">
-                <h3 className="font-bold text-slate-800 group-hover:text-blue-700 transition-colors truncate w-full">
+                <h3 className="font-bold text-slate-800 group-hover:text-primary transition-colors truncate w-full">
                   {item.name}
                 </h3>
-                <p className="text-xs font-medium text-slate-400 uppercase tracking-wide mt-1">
+                <p className="text-sm font-medium text-slate-400 uppercase tracking-wide mt-1">
                   {item.type}
                 </p>
                 {item.sub && (
@@ -79,17 +79,17 @@ const EResources = () => {
           <div className="grid md:grid-cols-12">
             
             {/* Left Side: Summary */}
-            <div className="md:col-span-5 bg-[#003366] p-10 text-white flex flex-col justify-center relative overflow-hidden">
-               <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-               <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+            <div className="md:col-span-5 bg-primary p-10 text-white flex flex-col justify-center relative overflow-hidden">
+               <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+               <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-primary-light rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
                
-               <h3 className="text-2xl font-bold mb-6 relative z-10">Access Mechanism</h3>
+               <h3 className="text-2xl font-bold mb-6 relative z-10 font-serif">Access Mechanism</h3>
                <p className="text-blue-100 mb-8 leading-relaxed relative z-10">
-                 All GTU e-Resources are accessible remotely via the <span className="text-white font-bold border-b border-blue-400 pb-0.5">Knimbus Portal</span>. Ensuring seamless access for our academic community is our priority.
+                 All GTU e-Resources are accessible remotely via the <span className="text-accent font-bold border-b border-accent pb-0.5">Knimbus Portal</span>. Ensuring seamless access for our academic community is our priority.
                </p>
                <div className="space-y-4 relative z-10 w-full">
                   <div className="p-4 bg-white/10 rounded-xl backdrop-blur-sm border border-white/10">
-                    <p className="text-xs font-bold uppercase tracking-wider text-blue-200 mb-1">Important Note</p>
+                    <p className="text-xs font-bold uppercase tracking-wider text-accent mb-1">Important Note</p>
                     <p className="text-sm">Verify your details and submit them to the Central Library for access activation.</p>
                   </div>
                </div>
@@ -98,7 +98,7 @@ const EResources = () => {
             {/* Right Side: Details */}
             <div className="md:col-span-7 p-10">
               <h4 className="text-lg font-bold text-slate-800 mb-6 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 text-primary">
                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 14l-1 1-1 1H3l5 4v-4H3v-4h.982a7.618 7.618 0 010-4H20a8 8 0 01-7.743 5.743L11 14 10 13 9 12H3v-4H9a7.6 7.6 0 0110.743-5.743z"></path></svg>
                 </span>
                 Details by User Type

@@ -2,6 +2,7 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import HeaderOPEN from './Components/HeaderOPEN.jsx'
 import NavbarOPEN from './Components/NavbarOPEN.jsx'
+import Footer from './Components/Footer.jsx'
 import Landing from './Pages/Landing.jsx'
 import About from './Pages/About.jsx'
 import AboutCentralLibrary from './Pages/AboutCentralLibrary.jsx'
@@ -36,6 +37,7 @@ function App() {
           <Route path="/membership-protocol" element={<MembershipProtocol />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   )
 }

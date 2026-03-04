@@ -1,1 +1,33 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #002147;
+  --color-primary-light: #003366;
+  --color-accent: #FFD700;
+  --color-accent-hover: #E5C100;
+  
+  --font-serif: "Merriweather", serif;
+  --font-sans: "Open Sans", sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F8F9FA;
+  color: #1f488a; /* Slate-800 for better contrast than #333 */
+  font-size: 1.125rem; /* 18px base size */
+  line-height: 1.75;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.3;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1.125rem; }
