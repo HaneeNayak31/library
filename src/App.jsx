@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Outlet } from 'react-router-dom'
 import HeaderOPEN from './Components/HeaderOPEN.jsx'
 import NavbarOPEN from './Components/NavbarOPEN.jsx'
 import Footer from './Components/Footer.jsx'
@@ -20,33 +20,61 @@ import AskALibrarian from './Pages/AskALibrarian.jsx'
 import ServicesFacilities from './Pages/ServicesFacilities.jsx'
 import NewsEvents from './Pages/NewsEvents.jsx'
 
-function App() {
+// Admin Components
+import AdminLogin from './Admin/AdminLogin.jsx'
+import AdminLayout from './Admin/AdminLayout.jsx'
+import Dashboard from './Admin/Dashboard.jsx'
+import ManagePages from './Admin/ManagePages.jsx'
+import ContentEditor from './Admin/ContentEditor.jsx'
+import ManageResources from './Admin/ManageResources.jsx'
+import ManageEvents from './Admin/ManageEvents.jsx'
+
+const PublicLayout = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <HeaderOPEN />
       <NavbarOPEN />
       <Breadcrumbs />
       <main className="max-w-7xl mx-auto px-4 md:px-8 pt-2 pb-12 md:pt-4 md:pb-16">
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/about/central-library" element={<AboutCentralLibrary />} />
-          <Route path="/about/vision-mission" element={<VisionMission />} />
-          <Route path="/about/message-from-vc" element={<MessageFromVC />} />
-          <Route path="/about/message-from-librarian" element={<MessageFromLibrarian />} />
-          <Route path="/about/library-committee" element={<LibraryCommittee />} />
-          <Route path="/about/procurement-procedure" element={<ProcurementProcedure />} />
-          <Route path="/about/ask-a-librarian" element={<AskALibrarian />} />
-          <Route path="/services-facilities" element={<ServicesFacilities />} />
-          <Route path="/news-events" element={<NewsEvents />} />
-          <Route path="/activity" element={<Activity />} />
-          <Route path="/e-resources" element={<EResources />} />
-          <Route path="/open-access-resources" element={<OpenAccessResources />} />
-          <Route path="/membership-protocol" element={<MembershipProtocol />} />
-        </Routes>
+        <Outlet />
       </main>
       <Footer />
     </div>
+  );
+};
+
+function App() {
+  return (
+    <Routes>
+      {/* Admin Interface Routes */}
+      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="pages" element={<ManagePages />} />
+        <Route path="editor" element={<ContentEditor />} />
+        <Route path="resources" element={<ManageResources />} />
+        <Route path="events" element={<ManageEvents />} />
+      </Route>
+
+      {/* Public Library Website Routes */}
+      <Route path="/" element={<PublicLayout />}>
+        <Route index element={<Landing />} />
+        <Route path="about" element={<About />} />
+        <Route path="about/central-library" element={<AboutCentralLibrary />} />
+        <Route path="about/vision-mission" element={<VisionMission />} />
+        <Route path="about/message-from-vc" element={<MessageFromVC />} />
+        <Route path="about/message-from-librarian" element={<MessageFromLibrarian />} />
+        <Route path="about/library-committee" element={<LibraryCommittee />} />
+        <Route path="about/procurement-procedure" element={<ProcurementProcedure />} />
+        <Route path="about/ask-a-librarian" element={<AskALibrarian />} />
+        <Route path="services-facilities" element={<ServicesFacilities />} />
+        <Route path="news-events" element={<NewsEvents />} />
+        <Route path="activity" element={<Activity />} />
+        <Route path="e-resources" element={<EResources />} />
+        <Route path="open-access-resources" element={<OpenAccessResources />} />
+        <Route path="membership-protocol" element={<MembershipProtocol />} />
+      </Route>
+    </Routes>
   )
 }
 
