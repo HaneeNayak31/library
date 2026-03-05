@@ -4,6 +4,7 @@ import HeaderOPEN from './Components/HeaderOPEN.jsx'
 import NavbarOPEN from './Components/NavbarOPEN.jsx'
 import Footer from './Components/Footer.jsx'
 import Breadcrumbs from './Components/Breadcrumbs.jsx'
+import FloatingChatbot from './Components/FloatingChatbot.jsx'
 import Landing from './Pages/Landing.jsx'
 import About from './Pages/About.jsx'
 import AboutCentralLibrary from './Pages/AboutCentralLibrary.jsx'
@@ -43,6 +44,7 @@ const PublicLayout = () => {
         <Outlet />
       </main>
       <Footer />
+      <FloatingChatbot />
     </div>
   );
 };
