@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowLeft, Save, Image as ImageIcon, Link as LinkIcon, Type } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import './AdminStyles.css';
 
 const ContentEditor = () => {
   return (

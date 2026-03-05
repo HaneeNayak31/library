@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Plus, Edit2, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import './AdminStyles.css';
 
 const ManagePages = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -47,7 +48,7 @@ const ManagePages = () => {
         </div>
 
         {/* Data Table */}
-        <div className="overflow-x-auto">
+        <div className="admin-table-scroll">
           <table className="w-full text-left text-sm whitespace-nowrap">
             <thead className="bg-slate-50 text-slate-500 border-b border-slate-200">
               <tr>

@@ -1,114 +1,279 @@
-import React, { useState } from 'react';
-import { Search, Plus, Calendar as CalendarIcon, MapPin, MoreHorizontal } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { CalendarDays, Edit2, ImagePlus, MapPin, Plus, Search, Trash2 } from 'lucide-react';
+import './AdminStyles.css';
+import { AdminCard, AdminModal, AdminPageHeader, Badge, ToastStack } from './AdminUI';
 
 const ManageEvents = () => {
+  const [events, setEvents] = useState([
+    {
+      id: 'EVT-10',
+      title: 'Orientation Program for First Year Students',
+      description: 'An onboarding session covering library resources and circulation process.',
+      date: '2026-03-15',
+      location: 'Main Reading Hall',
+      image: '',
+      status: 'Upcoming',
+    },
+    {
+      id: 'EVT-11',
+      title: 'Research Methodology Workshop',
+      description: 'Hands-on workshop with citation and journal discovery tools.',
+      date: '2026-03-20',
+      location: 'Seminar Room B',
+      image: '',
+      status: 'Upcoming',
+    },
+    {
+      id: 'EVT-12',
+      title: 'Book Exhibition',
+      description: 'Showcasing newly procured titles across engineering disciplines.',
+      date: '2026-02-10',
+      location: 'Ground Floor Atrium',
+      image: '',
+      status: 'Completed',
+    },
+  ]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [toasts, setToasts] = useState([]);
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    date: '',
+    location: '',
+    image: '',
+  });
 
-  const events = [
-    { id: 1, title: 'Orientation Program for First Year B.E. Students', type: 'Event', date: 'August 10, 2024', location: 'Main Reading Room', status: 'Upcoming' },
-    { id: 2, title: 'Research Methodology Workshop', type: 'Workshop', date: 'July 25, 2024', location: 'Discussion Room A', status: 'Completed' },
-    { id: 3, title: 'IEEE Xplore Training Session', type: 'Training', date: 'September 5, 2024', location: 'IT Lab', status: 'Upcoming' },
-    { id: 4, title: 'Library Closed for Renovation', type: 'Announcement', date: 'October 1-5, 2024', location: 'Entire Building', status: 'Scheduled' },
-    { id: 5, title: 'Book Exhibition 2023', type: 'Event', date: 'December 12, 2023', location: 'Ground Floor Atrium', status: 'Archived' },
-  ];
+  const addToast = (title, message) => {
+    const id = crypto.randomUUID();
+    setToasts((prev) => [...prev, { id, title, message }]);
+    window.setTimeout(() => {
+      setToasts((prev) => prev.filter((toast) => toast.id !== id));
+    }, 2600);
+  };
 
-  const filteredEvents = events.filter(event => 
-    event.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    event.type.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredEvents = useMemo(
+    () =>
+      events.filter(
+        (event) =>
+          event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          event.location.toLowerCase().includes(searchTerm.toLowerCase()),
+      ),
+    [events, searchTerm],
   );
+
+  const openCreateModal = () => {
+    setEditingId(null);
+    setFormData({ title: '', description: '', date: '', location: '', image: '' });
+    setIsModalOpen(true);
+  };
+
+  const openEditModal = (eventItem) => {
+    setEditingId(eventItem.id);
+    setFormData({
+      title: eventItem.title,
+      description: eventItem.description,
+      date: eventItem.date,
+      location: eventItem.location,
+      image: eventItem.image,
+    });
+    setIsModalOpen(true);
+  };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const preview = URL.createObjectURL(file);
+    setFormData((prev) => ({ ...prev, image: preview }));
+  };
+
+  const handleSaveEvent = () => {
+    if (!formData.title || !formData.description || !formData.date) return;
+
+    if (editingId) {
+      setEvents((prev) =>
+        prev.map((event) =>
+          event.id === editingId
+            ? {
+                ...event,
+                ...formData,
+                status: new Date(formData.date) < new Date() ? 'Completed' : 'Upcoming',
+              }
+            : event,
+        ),
+      );
+      addToast('Event updated', 'Event details were updated successfully.');
+    } else {
+      setEvents((prev) => [
+        {
+          id: `EVT-${Math.floor(100 + Math.random() * 800)}`,
+          ...formData,
+          status: new Date(formData.date) < new Date() ? 'Completed' : 'Upcoming',
+        },
+        ...prev,
+      ]);
+      addToast('Event created', 'New event added and ready for publishing.');
+    }
+
+    setIsModalOpen(false);
+  };
+
+  const handleDeleteEvent = (eventId) => {
+    setEvents((prev) => prev.filter((event) => event.id !== eventId));
+    addToast('Event deleted', `${eventId} was removed.`);
+  };
 
   return (
     <div className="space-y-6">
-      
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h2 className="text-2xl font-bold text-primary font-serif">News & Events Management</h2>
-          <p className="text-slate-500 text-sm mt-1">Add, edit, or archive library events, workshops, and general announcements.</p>
-        </div>
-        <button className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary-light transition-colors shadow-sm whitespace-nowrap">
-          <Plus size={16} /> Create Event
-        </button>
-      </div>
+      <AdminPageHeader
+        title="Events Management"
+        description="Create and manage public-facing events for the main website."
+        actions={
+          <button
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-light"
+            onClick={openCreateModal}
+          >
+            <Plus size={16} /> Create Event
+          </button>
+        }
+      />
 
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        
-        {/* Search Bar */}
-        <div className="p-4 border-b border-slate-200 bg-slate-50/50">
-          <div className="relative w-full max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-            <input 
-              type="text" 
-              placeholder="Search events or announcements..." 
-              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg text-sm focus:ring-accent focus:border-accent"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
+      <AdminCard>
+        <div className="relative mb-4 w-full max-w-md">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+          <input
+            type="text"
+            placeholder="Search events by title or location"
+            className="w-full rounded-lg border border-slate-300 py-2 pl-10 pr-4 text-sm focus:border-accent focus:outline-none"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
 
-        {/* Data List (Using a list format instead of standard table for variety) */}
-        <ul className="divide-y divide-slate-100">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {filteredEvents.map((event) => (
-            <li key={event.id} className="p-4 sm:p-6 hover:bg-slate-50/50 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              
-              <div className="flex-1 space-y-2">
-                <div className="flex items-start justify-between">
-                  <h3 className="text-lg font-bold text-primary leading-tight">{event.title}</h3>
-                  
-                  {/* Status Badge - Mobile (Top Right) */}
-                  <span className={`sm:hidden inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold shrink-0 ${
-                    event.status === 'Upcoming' ? 'bg-amber-100 text-amber-800' :
-                    event.status === 'Scheduled' ? 'bg-blue-100 text-blue-800' :
-                    event.status === 'Completed' ? 'bg-green-100 text-green-800' :
-                    'bg-slate-100 text-slate-600'
-                  }`}>
-                    {event.status}
-                  </span>
-                </div>
-                
-                <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-sm text-slate-500">
-                  <span className="font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs uppercase tracking-wider">
-                    {event.type}
-                  </span>
-                  <div className="flex items-center gap-1.5">
-                    <CalendarIcon size={14} className="text-slate-400" />
-                    {event.date}
+            <article key={event.id} className="overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:shadow-md">
+              <div className="h-32 bg-slate-100">
+                {event.image ? (
+                  <img src={event.image} alt={event.title} className="h-full w-full object-cover" />
+                ) : (
+                  <div className="flex h-full items-center justify-center text-slate-400">
+                    <ImagePlus size={22} />
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <MapPin size={14} className="text-slate-400" />
-                    {event.location}
-                  </div>
-                </div>
+                )}
               </div>
+              <div className="space-y-3 p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="text-base font-bold text-primary">{event.title}</h3>
+                  <Badge tone={event.status === 'Upcoming' ? 'warning' : 'success'}>{event.status}</Badge>
+                </div>
 
-              {/* Desktop Actions Area */}
-              <div className="flex items-center justify-end gap-6 sm:w-48 shrink-0 border-t sm:border-t-0 border-slate-100 pt-3 sm:pt-0 mt-3 sm:mt-0">
-                 {/* Status Badge - Desktop */}
-                 <span className={`hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${
-                    event.status === 'Upcoming' ? 'bg-amber-100 text-amber-800' :
-                    event.status === 'Scheduled' ? 'bg-blue-100 text-blue-800' :
-                    event.status === 'Completed' ? 'bg-green-100 text-green-800' :
-                    'bg-slate-100 text-slate-600'
-                  }`}>
-                    {event.status}
-                  </span>
-                  <button className="text-slate-400 hover:text-primary transition-colors p-1 rounded-md hover:bg-slate-100">
-                    <MoreHorizontal size={20} />
+                <p className="line-clamp-2 text-sm text-slate-600">{event.description}</p>
+
+                <div className="space-y-1 text-sm text-slate-500">
+                  <p className="flex items-center gap-2">
+                    <CalendarDays size={15} /> {new Date(event.date).toLocaleDateString()}
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <MapPin size={15} /> {event.location}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-end gap-2 border-t border-slate-100 pt-2">
+                  <button
+                    className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-100"
+                    onClick={() => openEditModal(event)}
+                  >
+                    <Edit2 size={14} /> Edit
                   </button>
+                  <button
+                    className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm text-rose-600 hover:bg-rose-50"
+                    onClick={() => handleDeleteEvent(event.id)}
+                  >
+                    <Trash2 size={14} /> Delete
+                  </button>
+                </div>
               </div>
-
-            </li>
+            </article>
           ))}
 
-          {filteredEvents.length === 0 && (
-            <li className="p-12 text-center text-slate-500">
-              No events found matching your criteria.
-            </li>
-          )}
-        </ul>
+          {filteredEvents.length === 0 ? (
+            <div className="col-span-full rounded-xl border border-dashed border-slate-300 p-10 text-center text-sm text-slate-500">
+              No events found for the current search term.
+            </div>
+          ) : null}
+        </div>
+      </AdminCard>
 
-      </div>
+      <AdminModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={editingId ? 'Edit Event' : 'Create Event'}
+        footer={[
+          <button
+            key="cancel"
+            type="button"
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50"
+            onClick={() => setIsModalOpen(false)}
+          >
+            Cancel
+          </button>,
+          <button
+            key="save"
+            type="button"
+            className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-light"
+            onClick={handleSaveEvent}
+          >
+            {editingId ? 'Save Changes' : 'Create Event'}
+          </button>,
+        ]}
+      >
+        <div className="grid grid-cols-1 gap-4">
+          <input
+            type="text"
+            placeholder="Event title"
+            value={formData.title}
+            onChange={(event) => setFormData((prev) => ({ ...prev, title: event.target.value }))}
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-accent focus:outline-none"
+          />
+          <textarea
+            rows={4}
+            placeholder="Event description"
+            value={formData.description}
+            onChange={(event) => setFormData((prev) => ({ ...prev, description: event.target.value }))}
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-accent focus:outline-none"
+          />
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <input
+              type="date"
+              value={formData.date}
+              onChange={(event) => setFormData((prev) => ({ ...prev, date: event.target.value }))}
+              className="rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-accent focus:outline-none"
+            />
+            <input
+              type="text"
+              placeholder="Location"
+              value={formData.location}
+              onChange={(event) => setFormData((prev) => ({ ...prev, location: event.target.value }))}
+              className="rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-accent focus:outline-none"
+            />
+          </div>
+
+          <label className="rounded-lg border border-dashed border-slate-300 p-4 text-sm text-slate-600 hover:bg-slate-50">
+            <span className="flex items-center gap-2 font-medium text-primary">
+              <ImagePlus size={16} /> Upload event image
+            </span>
+            <input type="file" accept="image/*" className="mt-3 block w-full text-xs" onChange={handleImageUpload} />
+          </label>
+
+          {formData.image ? (
+            <img src={formData.image} alt="Preview" className="h-40 w-full rounded-lg object-cover" />
+          ) : null}
+        </div>
+      </AdminModal>
+
+      <ToastStack toasts={toasts} onClose={(id) => setToasts((prev) => prev.filter((toast) => toast.id !== id))} />
     </div>
   );
 };

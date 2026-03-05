@@ -28,6 +28,12 @@ import ManagePages from './Admin/ManagePages.jsx'
 import ContentEditor from './Admin/ContentEditor.jsx'
 import ManageResources from './Admin/ManageResources.jsx'
 import ManageEvents from './Admin/ManageEvents.jsx'
+import ManageBooks from './Admin/ManageBooks.jsx'
+import ManageNotices from './Admin/ManageNotices.jsx'
+import LibraryAnalytics from './Admin/LibraryAnalytics.jsx'
+import BannerControl from './Admin/BannerControl.jsx'
+import AdminManagement from './Admin/AdminManagement.jsx'
+import AdminSettings from './Admin/AdminSettings.jsx'
 
 const PublicLayout = () => {
   return (
@@ -50,10 +56,16 @@ function App() {
       <Route path="/admin/login" element={<AdminLogin />} />
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<Dashboard />} />
+        <Route path="books" element={<ManageBooks />} />
         <Route path="pages" element={<ManagePages />} />
         <Route path="editor" element={<ContentEditor />} />
         <Route path="resources" element={<ManageResources />} />
         <Route path="events" element={<ManageEvents />} />
+        <Route path="notices" element={<ManageNotices />} />
+        <Route path="analytics" element={<LibraryAnalytics />} />
+        <Route path="banner" element={<BannerControl />} />
+        <Route path="admins" element={<AdminManagement />} />
+        <Route path="settings" element={<AdminSettings />} />
       </Route>
 
       {/* Public Library Website Routes */}

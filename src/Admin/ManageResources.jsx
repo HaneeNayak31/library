@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Plus, Filter, MoreVertical } from 'lucide-react';
+import './AdminStyles.css';
 
 const ManageResources = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -55,7 +56,7 @@ const ManageResources = () => {
         </div>
 
         {/* Data Table */}
-        <div className="overflow-x-auto">
+        <div className="admin-table-scroll">
           <table className="w-full text-left text-sm whitespace-nowrap">
             <thead className="bg-slate-50 text-slate-500 border-b border-slate-200">
               <tr>

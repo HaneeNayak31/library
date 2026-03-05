@@ -1,87 +1,89 @@
 import React from 'react';
-import { Users, BookOpen, Calendar, Eye, Activity, Database } from 'lucide-react';
+import { BookOpen, CalendarDays, ClipboardList, FileText, Users, Bell, Clock3 } from 'lucide-react';
+import './AdminStyles.css';
+import { AdminCard, AdminPageHeader, Badge, StatCard, TinyBarChart, TinyLineChart } from './AdminUI';
 
 const Dashboard = () => {
   const stats = [
-    { label: 'Total E-Resources', value: '450+', icon: Database, color: 'text-blue-500', bg: 'bg-blue-100' },
-    { label: 'Active Students', value: '12,045', icon: Users, color: 'text-green-500', bg: 'bg-green-100' },
-    { label: 'Upcoming Events', value: '3', icon: Calendar, color: 'text-amber-500', bg: 'bg-amber-100' },
-    { label: 'Page Views (Week)', value: '84.2K', icon: Eye, color: 'text-purple-500', bg: 'bg-purple-100' },
+    { label: 'Total Books', value: '12,480', icon: BookOpen, hint: '+240 this month' },
+    { label: 'Available Books', value: '9,864', icon: ClipboardList, hint: '79% in circulation pool' },
+    { label: 'Issued Books', value: '2,616', icon: FileText, hint: 'Today: 114 active issues' },
+    { label: 'Registered Users', value: '6,932', icon: Users, hint: '312 new registrations' },
+    { label: 'Active Events', value: '7', icon: CalendarDays, hint: '2 this week' },
+    { label: 'Notices Published', value: '18', icon: Bell, hint: '4 high-priority' },
   ];
 
   const recentActivity = [
-    { action: 'Updated', subject: 'Vision & Mission page', time: '2 hours ago', user: 'Admin User' },
-    { action: 'Added', subject: 'New IEEE E-Resource', time: '5 hours ago', user: 'Librarian' },
-    { action: 'Published', subject: 'Workshop Announcement', time: '1 day ago', user: 'Admin User' },
-    { action: 'Deleted', subject: 'Draft Event', time: '2 days ago', user: 'Librarian' },
+    { action: 'Issued', subject: 'Computer Networks (5th Ed.)', time: '08:42 AM', actor: 'Circulation Desk' },
+    { action: 'Published', subject: 'Library Orientation Notice', time: '09:15 AM', actor: 'Admin User' },
+    { action: 'Created', subject: 'AI Research Workshop Event', time: '11:30 AM', actor: 'Events Team' },
+    { action: 'Updated', subject: 'Homepage Hero Banner #2', time: '01:10 PM', actor: 'Admin User' },
+    { action: 'Added', subject: 'New Administrator - K. Patel', time: '03:22 PM', actor: 'Super Admin' },
   ];
 
   return (
     <div className="space-y-6">
-      
-      {/* Top Stats Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        {stats.map((stat, i) => {
-          const Icon = stat.icon;
-          return (
-            <div key={i} className="bg-white rounded-xl border border-slate-200 p-6 flex items-center gap-4 shadow-sm hover:shadow-md transition-shadow">
-              <div className={`w-12 h-12 rounded-lg flex items-center justify-center shrink-0 ${stat.bg} ${stat.color}`}>
-                <Icon size={24} />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-slate-500">{stat.label}</p>
-                <h3 className="text-2xl font-bold text-primary mt-1">{stat.value}</h3>
-              </div>
-            </div>
-          );
-        })}
+      <AdminPageHeader
+        title="Dashboard"
+        description="Overview of library operations, publishing, and admin activity."
+      />
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        {stats.map((stat) => (
+          <StatCard key={stat.label} label={stat.label} value={stat.value} icon={stat.icon} hint={stat.hint} />
+        ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        {/* Placeholder Chart Area */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-primary">Website Traffic Overview</h3>
-            <select className="text-sm border-slate-300 rounded-lg text-slate-600 focus:ring-accent focus:border-accent">
-              <option>Last 7 Days</option>
-              <option>Last 30 Days</option>
-              <option>This Year</option>
-            </select>
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
+        <AdminCard
+          className="xl:col-span-2"
+          title="Book Issue Trends"
+          subtitle="Daily issue movement in the last 7 days"
+          action={<Badge tone="info">Weekly</Badge>}
+        >
+          <TinyLineChart points={[22, 40, 36, 58, 72, 66, 84]} />
+          <div className="mt-3 grid grid-cols-4 gap-3 text-xs text-slate-500">
+            <span>Mon: 96</span>
+            <span>Tue: 112</span>
+            <span>Wed: 106</span>
+            <span>Thu: 128</span>
+            <span>Fri: 140</span>
+            <span>Sat: 134</span>
+            <span>Sun: 156</span>
           </div>
-          <div className="h-64 bg-slate-50 rounded-lg border border-slate-100 flex items-center justify-center text-slate-400 flex-col gap-2">
-            <Activity size={32} />
-            <p className="text-sm">Chart visualization would render here (e.g. Recharts)</p>
-          </div>
-        </div>
+        </AdminCard>
 
-        {/* Recent Activity Log */}
-        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm flex flex-col">
-          <h3 className="text-lg font-bold text-primary mb-4 shrink-0">Recent Activity</h3>
-          <div className="flex-1 overflow-y-auto pr-2">
-            <ul className="space-y-4">
-              {recentActivity.map((activity, i) => (
-                <li key={i} className="flex gap-4">
-                  <div className="relative flex flex-col items-center">
-                    <div className="w-2 h-2 rounded-full bg-accent mt-1.5 shrink-0 z-10" />
-                    {i !== recentActivity.length - 1 && (
-                      <div className="w-px h-full bg-slate-200 absolute top-3" />
-                    )}
-                  </div>
-                  <div>
-                    <p className="text-sm text-slate-700">
-                      <span className="font-semibold">{activity.user}</span> {activity.action.toLowerCase()}{' '}
-                      <span className="font-medium text-primary">{activity.subject}</span>
-                    </p>
-                    <p className="text-xs text-slate-500 mt-1">{activity.time}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+        <AdminCard title="Library Activity" subtitle="Section utilization snapshot">
+          <TinyBarChart values={[54, 68, 74, 59, 83, 62]} />
+          <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-slate-500">
+            <span>Reference</span>
+            <span>Reading Hall</span>
+            <span>E-Library</span>
           </div>
-        </div>
-
+        </AdminCard>
       </div>
+
+      <AdminCard title="Recent Activity Log" subtitle="Latest admin and library operations">
+        <ul className="space-y-4">
+          {recentActivity.map((activity, index) => (
+            <li key={`${activity.subject}-${activity.time}`} className="flex gap-4">
+              <div className="relative flex flex-col items-center">
+                <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent" />
+                {index !== recentActivity.length - 1 ? <div className="absolute top-3 h-full w-px bg-slate-200" /> : null}
+              </div>
+              <div className="flex-1 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2">
+                <p className="text-sm text-slate-700">
+                  <span className="font-semibold text-primary">{activity.actor}</span> {activity.action.toLowerCase()}{' '}
+                  <span className="font-medium">{activity.subject}</span>
+                </p>
+                <p className="mt-1 flex items-center gap-1 text-xs text-slate-500">
+                  <Clock3 size={12} /> {activity.time}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </AdminCard>
     </div>
   );
 };
