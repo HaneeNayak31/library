@@ -36,7 +36,8 @@ const BannerControl = () => {
   return (
     <div className="space-y-6">
       <AdminPageHeader
-        title="Hero / Banner Control"
+        title="Hero / Banner
+         Control"
         description="Manage homepage hero content with instant visual preview."
         actions={
           <button
@@ -52,13 +53,7 @@ const BannerControl = () => {
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
         <AdminCard title="Banner Settings" subtitle="Update text, media, and visibility">
           <div className="space-y-4">
-            <input
-              type="text"
-              value={banner.title}
-              onChange={(event) => setBanner((prev) => ({ ...prev, title: event.target.value }))}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-accent focus:outline-none"
-              placeholder="Hero title"
-            />
+           
 
             <textarea
               rows={4}
@@ -94,17 +89,17 @@ const BannerControl = () => {
         </AdminCard>
 
         <AdminCard title="Live Preview" subtitle="How banner appears on public homepage">
-          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-900 text-white">
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 text-white">
             <div className="relative h-64">
               {banner.image ? (
                 <img src={banner.image} alt="Banner preview" className="h-full w-full object-cover" />
               ) : (
-                <div className="h-full w-full bg-linear-to-r from-primary to-primary-light" />
+                <div className="h-full w-full bg-slate-100" />
               )}
-              <div className="absolute inset-0 bg-primary/45" />
+              <div className="absolute inset-0 bg-primary/10" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <Badge tone={banner.enabled ? 'success' : 'warning'}>{banner.enabled ? 'Active' : 'Disabled'}</Badge>
-                <h3 className="mt-3 text-2xl font-bold text-white">{banner.title || 'Hero title'}</h3>
+                
                 <p className="mt-2 text-sm text-slate-100">{banner.description || 'Hero description'}</p>
               </div>
             </div>

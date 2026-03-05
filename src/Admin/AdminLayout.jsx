@@ -16,7 +16,6 @@ import {
   User,
   BarChart3,
   Image,
-  FileText,
   Database,
 } from 'lucide-react';
 
@@ -43,7 +42,6 @@ const AdminLayout = () => {
   ];
 
   const utilityItems = [
-    { label: 'Manage Pages', icon: FileText, path: '/admin/pages' },
     { label: 'E-Resources', icon: Database, path: '/admin/resources' },
   ];
 

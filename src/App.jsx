@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route, Outlet } from 'react-router-dom'
+import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
 import HeaderOPEN from './Components/HeaderOPEN.jsx'
 import NavbarOPEN from './Components/NavbarOPEN.jsx'
 import Footer from './Components/Footer.jsx'
@@ -24,8 +24,6 @@ import NewsEvents from './Pages/NewsEvents.jsx'
 import AdminLogin from './Admin/AdminLogin.jsx'
 import AdminLayout from './Admin/AdminLayout.jsx'
 import Dashboard from './Admin/Dashboard.jsx'
-import ManagePages from './Admin/ManagePages.jsx'
-import ContentEditor from './Admin/ContentEditor.jsx'
 import ManageResources from './Admin/ManageResources.jsx'
 import ManageEvents from './Admin/ManageEvents.jsx'
 import ManageBooks from './Admin/ManageBooks.jsx'
@@ -57,8 +55,6 @@ function App() {
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<Dashboard />} />
         <Route path="books" element={<ManageBooks />} />
-        <Route path="pages" element={<ManagePages />} />
-        <Route path="editor" element={<ContentEditor />} />
         <Route path="resources" element={<ManageResources />} />
         <Route path="events" element={<ManageEvents />} />
         <Route path="notices" element={<ManageNotices />} />
@@ -66,6 +62,7 @@ function App() {
         <Route path="banner" element={<BannerControl />} />
         <Route path="admins" element={<AdminManagement />} />
         <Route path="settings" element={<AdminSettings />} />
+        <Route path="*" element={<Navigate to="/admin" replace />} />
       </Route>
 
       {/* Public Library Website Routes */}
@@ -86,6 +83,7 @@ function App() {
         <Route path="open-access-resources" element={<OpenAccessResources />} />
         <Route path="membership-protocol" element={<MembershipProtocol />} />
       </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }
