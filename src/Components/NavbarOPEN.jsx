@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, ChevronDown } from 'lucide-react';
+import { ExternalLink, ChevronDown, Menu, X } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 const aboutSubLinks = [
@@ -24,38 +24,47 @@ const navLinks = [
 
 const NavbarOPEN = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [aboutMobileOpen, setAboutMobileOpen] = useState(false);
+
+  const navItemBaseClass =
+    'relative inline-flex h-full items-center px-3 lg:px-4 text-[0.8rem] lg:text-[0.84rem] font-semibold uppercase tracking-[0.09em] transition-colors duration-200';
 
   return (
-    <nav className="w-full bg-primary text-white sticky top-0 z-50 shadow-xl font-sans">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-stretch justify-between h-14">
-          
-          {/* Main Navigation Links */}
-          <div className="flex items-stretch">
+    <nav className="sticky top-0 z-50 w-full border-y border-primary-light/25 bg-primary text-white shadow-[0_8px_24px_rgba(0,33,71,0.24)] font-sans">
+      <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
+        <div className="flex h-12 items-center justify-between lg:h-14">
+          <div className="hidden h-full items-stretch lg:flex">
             {navLinks.map(({ label, path, hasDropdown }) => (
               <div 
                 key={path}
-                className="relative"
+                className="relative h-full"
                 onMouseEnter={() => hasDropdown && setOpenDropdown(label)}
                 onMouseLeave={() => hasDropdown && setOpenDropdown(null)}
               >
                 <NavLink
                   to={path}
                   className={({ isActive }) =>
-                    `relative flex items-center px-4 md:px-5 text-[12px] lg:text-[15px] font-bold  tracking-widest border-r border-white/10 first:border-l group transition-all duration-300 hover:bg-white/5 h-full ${
-                      isActive ? 'text-accent' : ''
+                    `${navItemBaseClass} group border-r border-white/10 first:border-l hover:bg-white/8 ${
+                      isActive ? 'text-accent' : 'text-white'
                     }`
                   }
                 >
                   {({ isActive }) => (
                     <>
-                      <span className="relative z-10 group-hover:text-accent transition-colors flex items-center gap-2">
+                      <span className="relative z-10 flex items-center gap-1.5 group-hover:text-accent transition-colors duration-200">
                         {label}
-                        {hasDropdown && <ChevronDown size={14} className="transition-transform duration-200" style={{ transform: openDropdown === label ? 'rotate(180deg)' : 'rotate(0deg)' }} />}
+                        {hasDropdown && (
+                          <ChevronDown
+                            size={14}
+                            className="transition-transform duration-200"
+                            style={{ transform: openDropdown === label ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                          />
+                        )}
                       </span>
                       <span
-                        className={`absolute bottom-0 left-0 w-full transition-all duration-200 bg-accent ${
-                          isActive ? 'h-1' : 'h-0 group-hover:h-1'
+                        className={`absolute bottom-0 left-0 w-full bg-accent transition-all duration-200 ${
+                          isActive ? 'h-0.75' : 'h-0 group-hover:h-0.75'
                         }`}
                         aria-hidden
                       />
@@ -65,26 +74,38 @@ const NavbarOPEN = () => {
 
                 {/* Dropdown Menu */}
                 {hasDropdown && openDropdown === label && (
-                  <div className="absolute top-full left-0 w-72 bg-primary shadow-2xl rounded-b-lg overflow-hidden border-t-2 border-accent">
+                  <div className="absolute left-0 top-full z-20 w-72 overflow-hidden rounded-b-md border-t-2 border-accent bg-primary shadow-2xl">
                     {aboutSubLinks.map((subLink) => {
                       const isExternal = subLink.path.startsWith('http');
-                      const LinkComponent = isExternal ? 'a' : NavLink;
-                      const linkProps = isExternal 
-                        ? { href: subLink.path, target: "_blank", rel: "noopener noreferrer" } 
-                        : { to: subLink.path };
+                      const linkClass =
+                        'block border-b border-white/10 px-4 py-2.5 text-[0.82rem] font-medium tracking-wide transition-all duration-200 hover:bg-white/10 hover:pl-5 hover:text-accent';
+
+                      if (isExternal) {
+                        return (
+                          <a
+                            key={subLink.path}
+                            href={subLink.path}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={linkClass}
+                          >
+                            {subLink.label}
+                          </a>
+                        );
+                      }
 
                       return (
-                        <LinkComponent
+                        <NavLink
                           key={subLink.path}
-                          {...linkProps}
                           className={({ isActive }) =>
-                            `block px-5 py-3 text-[15px] font-bold tracking-normal border-b border-white/5 hover:bg-white/10 hover:pl-6 hover:text-accent transition-all duration-200 ${
+                            `${linkClass} ${
                               isActive ? 'bg-white/10 text-accent' : ''
                             }`
                           }
+                          to={subLink.path}
                         >
                           {subLink.label}
-                        </LinkComponent>
+                        </NavLink>
                       );
                     })}
                   </div>
@@ -93,23 +114,113 @@ const NavbarOPEN = () => {
             ))}
           </div>
 
-          {/* GTU-IRINS Link - High-End Button Style */}
-          <div className="flex  items-center pl-6">
+          <div className="flex items-center gap-2 lg:pl-4">
             <a 
               href="https://gtu.irins.org/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-2 bg-accent text-primary rounded-3xl
-                         text-sm font-bold uppercase tracking-wider 
-                         hover:bg-accent-hover hover:shadow-[0_0_20px_rgba(255,215,0,0.4)] 
-                         transition-all duration-300"
+              className="hidden items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-[0.72rem] font-bold uppercase tracking-[0.12em] text-primary transition-all duration-300 hover:bg-accent-hover hover:shadow-[0_0_14px_rgba(255,215,0,0.34)] lg:inline-flex"
             >
               GTU – IRINS
-              <ExternalLink size={14} strokeWidth={3} />
+              <ExternalLink size={13} strokeWidth={2.5} />
             </a>
+
+            <button
+              type="button"
+              className="inline-flex items-center justify-center rounded-md border border-white/25 p-2 text-white transition-colors duration-200 hover:bg-white/10 lg:hidden"
+              onClick={() => setMobileOpen((prev) => !prev)}
+              aria-label="Toggle navigation"
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
           </div>
 
         </div>
+
+        {mobileOpen && (
+          <div className="border-t border-white/15 py-2 lg:hidden">
+            {navLinks.map(({ label, path, hasDropdown }) => {
+              if (hasDropdown) {
+                return (
+                  <div key={path} className="border-b border-white/10">
+                    <button
+                      type="button"
+                      onClick={() => setAboutMobileOpen((prev) => !prev)}
+                      className="flex w-full items-center justify-between px-1 py-3 text-left text-[0.84rem] font-semibold uppercase tracking-[0.09em]"
+                    >
+                      <span>{label}</span>
+                      <ChevronDown
+                        size={15}
+                        className="transition-transform duration-200"
+                        style={{ transform: aboutMobileOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                      />
+                    </button>
+
+                    {aboutMobileOpen && (
+                      <div className="pb-2">
+                        {aboutSubLinks.map((subLink) => {
+                          const isExternal = subLink.path.startsWith('http');
+
+                          if (isExternal) {
+                            return (
+                              <a
+                                key={subLink.path}
+                                href={subLink.path}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block px-4 py-2 text-[0.8rem] text-white/90 transition-colors duration-200 hover:text-accent"
+                              >
+                                {subLink.label}
+                              </a>
+                            );
+                          }
+
+                          return (
+                            <NavLink
+                              key={subLink.path}
+                              to={subLink.path}
+                              className="block px-4 py-2 text-[0.8rem] text-white/90 transition-colors duration-200 hover:text-accent"
+                              onClick={() => setMobileOpen(false)}
+                            >
+                              {subLink.label}
+                            </NavLink>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <NavLink
+                  key={path}
+                  to={path}
+                  className={({ isActive }) =>
+                    `block border-b border-white/10 px-1 py-3 text-[0.84rem] font-semibold uppercase tracking-[0.09em] transition-colors duration-200 ${
+                      isActive ? 'text-accent' : 'text-white'
+                    }`
+                  }
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {label}
+                </NavLink>
+              );
+            })}
+
+            <a
+              href="https://gtu.irins.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-[0.72rem] font-bold uppercase tracking-[0.12em] text-primary"
+            >
+              GTU – IRINS
+              <ExternalLink size={13} strokeWidth={2.5} />
+            </a>
+          </div>
+        )}
+
       </div>
     </nav>
   );

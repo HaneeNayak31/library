@@ -41,7 +41,7 @@ const PublicLayout = () => {
       <HeaderOPEN />
       <NavbarOPEN />
       <Breadcrumbs />
-      <main className="max-w-7xl mx-auto px-4 md:px-8 pt-2 pb-12 md:pt-4 md:pb-16">
+      <main className="max-w-7xl mx-auto px-4 md:px-8 pt-1 pb-12 md:pt-1 md:pb-10">
         <Outlet />
       </main>
       <Footer />

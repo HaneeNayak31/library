@@ -14,6 +14,7 @@
 html {
   scrollbar-width: none;
   -ms-overflow-style: none;
+  overflow-x: clip;
 }
 
 html::-webkit-scrollbar {
@@ -28,10 +29,17 @@ body {
   line-height: 1.75;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  overflow-x: clip;
 }
 
 body::-webkit-scrollbar {
   display: none;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 /* Hide scrollbars on all elements with overflow */
