@@ -77,11 +77,11 @@ const MessageFromLibrarian = () => {
           </div>
 
           {/* RIGHT: PHOTO DISPLAY (Landscape Focused) */}
-          <div className="lg:w-80 order-1 lg:order-2">
+          <div className="lg:w-fit order-1 lg:order-2">
             <div className="sticky top-24 space-y-6">
               <div className="relative border-8 border-white shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
                 {/* Portrait Aspect Ratio for librarian.png */}
-                <div className="aspect-[3/4] bg-slate-100 overflow-hidden relative transition-all duration-1000">
+                <div className="h-fit w-fit bg-slate-100 overflow-hidden relative transition-all duration-1000">
                   <img 
                     src="/librarian.png" 
                     alt="Librarian" 
