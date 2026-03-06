@@ -17,7 +17,7 @@ const MessageFromVC = () => {
         {/* DOCUMENT HEADER */}
         <div className="border-b-4 border-slate-900 pb-8 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end">
           <div className="space-y-1">
-            <h1 className="text-[11px] font-black uppercase tracking-[0.6em] text-blue-900">
+            <h1 className="text-[11px] font-black uppercase tracking-[0.3em] text-blue-900">
               Gujarat Technological University
             </h1>
             <h2 className="text-4xl font-black text-slate-900 uppercase tracking-tighter">
@@ -78,9 +78,9 @@ const MessageFromVC = () => {
             <div className="sticky top-24 space-y-6">
               <div className="relative border-8 border-white shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
                 {/* 16:9 Landscape Aspect Ratio */}
-                <div className="aspect-video bg-slate-100 overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-1000">
+                <div className="aspect-video bg-slate-100 overflow-hidden relative transition-all duration-1000">
                   <img 
-                    src="/GTU_VC.jpg" 
+                    src="/vc.png" 
                     alt="Vice Chancellor" 
                     className="w-full h-full object-cover" 
                   />

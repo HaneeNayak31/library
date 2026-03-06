@@ -24,7 +24,7 @@ body {
   font-family: var(--font-sans);
   background-color: #F8F9FA;
   color: #1f488a; /* Slate-800 for better contrast than #333 */
-  font-size: 1.125rem; /* 18px base size */
+  font-size: 1rem; /* Reset base size */
   line-height: 1.75;
   scrollbar-width: none;
   -ms-overflow-style: none;

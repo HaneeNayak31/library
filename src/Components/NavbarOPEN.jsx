@@ -26,7 +26,7 @@ const NavbarOPEN = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   return (
-    <nav className="w-full bg-primary text-white sticky top-19 md:top-22.5 z-40 shadow-xl font-sans">
+    <nav className="w-full bg-primary text-white sticky top-0 z-50 shadow-xl font-sans">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-stretch justify-between h-14">
           

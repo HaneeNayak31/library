@@ -20,6 +20,7 @@ import MembershipProtocol from './Pages/MembershipProtocol.jsx'
 import AskALibrarian from './Pages/AskALibrarian.jsx'
 import ServicesFacilities from './Pages/ServicesFacilities.jsx'
 import NewsEvents from './Pages/NewsEvents.jsx'
+import EventDetails from './Pages/EventDetails.jsx'
 
 // Admin Components
 import AdminLogin from './Admin/AdminLogin.jsx'
@@ -80,6 +81,7 @@ function App() {
         <Route path="about/ask-a-librarian" element={<AskALibrarian />} />
         <Route path="services-facilities" element={<ServicesFacilities />} />
         <Route path="news-events" element={<NewsEvents />} />
+        <Route path="news-events/:id" element={<EventDetails />} />
         <Route path="activity" element={<Activity />} />
         <Route path="e-resources" element={<EResources />} />
         <Route path="open-access-resources" element={<OpenAccessResources />} />
