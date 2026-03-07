@@ -1,61 +1,12 @@
 import React from 'react'
 import { Search, BookOpen, Monitor, Users, Clock } from 'lucide-react'
+import HeroSection from '../Components/HeroSection'
 
 function Landing() {
   return (
     <div className="space-y-12">
       {/* Hero Search Section */}
-      <div className="relative bg-primary rounded-3xl overflow-hidden shadow-2xl p-8 md:p-16 text-center">
-        {/* Decorative Background Elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -mr-16 -mt-14"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -ml-16 -mb-16"></div>
-        
-        <div className="relative z-10 max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-serif flex flex-col items-center gap-2">
-            <span>Welcome to</span>
-            <span className="text-accent text-4xl md:text-6xl drop-shadow-md">Central Library</span>
-          </h2>
-          <p className="text-blue-100 text-lg mb-8 leading-relaxed">
-            Your gateway to a world of knowledge. Search our extensive catalog of books, journals, and digital resources.
-          </p>
-          
-          {/* Search Bar */}
-          <div className="relative max-w-2xl mx-auto group">
-            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-              <Search className="h-6 w-6 text-slate-400 group-focus-within:text-primary transition-colors" />
-            </div>
-            <input 
-              type="text" 
-              placeholder="Search for books, articles, e-resources..." 
-              className="w-full py-4 pl-14 pr-32 rounded-full bg-white text-slate-900 shadow-xl focus:outline-none focus:ring-4 focus:ring-accent/50 text-lg transition-all"
-            />
-            <button className="absolute right-2 top-2 bottom-2 bg-primary hover:bg-primary-light text-white px-6 rounded-full font-bold uppercase tracking-wider text-sm transition-colors">
-              Search
-            </button>
-          </div>
-          
-          <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm font-semibold uppercase tracking-widest text-blue-200">
-            <span>Popular:</span>
-            <a href="#" className="hover:text-accent transition-colors underline decoration-accent/50 underline-offset-4">Engineering</a>
-            <a href="#" className="hover:text-accent transition-colors underline decoration-accent/50 underline-offset-4">Management</a>
-            <a href="#" className="hover:text-accent transition-colors underline decoration-accent/50 underline-offset-4">Pharmacy</a>
-            <a href="#" className="hover:text-accent transition-colors underline decoration-accent/50 underline-offset-4">Applied Sciences</a>
-          </div>
-
-          {/* Quick Tasks */}
-          <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap justify-center gap-4">
-            <a href="#" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-xl font-bold transition-all backdrop-blur-sm border border-white/5 hover:border-white/20 hover:-translate-y-1">
-              <BookOpen size={18} className="text-accent" /> Book a Room
-            </a>
-            <a href="/about/ask-a-librarian" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-xl font-bold transition-all backdrop-blur-sm border border-white/5 hover:border-white/20 hover:-translate-y-1">
-              <Users size={18} className="text-accent" /> Ask a Librarian
-            </a>
-            <a href="#" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-xl font-bold transition-all backdrop-blur-sm border border-white/5 hover:border-white/20 hover:-translate-y-1">
-              <Clock size={18} className="text-accent" /> My Account
-            </a>
-          </div>
-        </div>
-      </div>
+      <HeroSection />
 
       {/* Quick Stats / Info Row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

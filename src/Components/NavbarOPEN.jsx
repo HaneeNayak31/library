@@ -28,7 +28,7 @@ const NavbarOPEN = () => {
   const [aboutMobileOpen, setAboutMobileOpen] = useState(false);
 
   const navItemBaseClass =
-    'relative inline-flex h-full items-center px-3 lg:px-4 text-[0.8rem] lg:text-[0.84rem] font-semibold uppercase tracking-[0.09em] transition-colors duration-200';
+    'relative inline-flex h-full items-center px-3 lg:px-4 text-[0.8rem] lg:text-[0.88rem] font-semibold  tracking-[0.09em] transition-colors duration-200';
 
   return (
     <nav className="sticky top-0 z-50 w-full border-y border-primary-light/25 bg-primary text-white shadow-[0_8px_24px_rgba(0,33,71,0.24)] font-sans">
