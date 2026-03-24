@@ -44,13 +44,13 @@ function HeroSection() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <div className="w-full max-w-7xl mx-auto z-10 relative mt-4 md:mt-8 mb-12 flex flex-col gap-6">
+    <div className="w-full max-w-7xl mx-auto z-10 relative mt-4 md:mt-3 mb-12 flex flex-col gap-6">
       
       {/* Top Block: Carousel & Widgets Grid */}
       <div className="grid lg:grid-cols-12 gap-6 items-stretch">
         
         {/* Left Column: Image Carousel (Takes up 8 columns) */}
-        <div className="lg:col-span-8 relative rounded-3xl overflow-hidden shadow-xl bg-slate-900 group h-[400px] md:h-[500px]">
+        <div className="lg:col-span-8 relative rounded-md overflow-hidden bg-slate-900 group h-[400px] md:h-[500px]">
           {slides.map((slide, index) => (
             <div 
               key={index}
@@ -61,29 +61,15 @@ function HeroSection() {
                 alt={slide.title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
+              <div className="absolute inset-0 "></div>
               
               <div className="absolute bottom-0 left-0 p-8 w-full transform transition-transform duration-700 select-none">
-                <span className="inline-block px-3 py-1 bg-accent/90 text-white text-xs font-bold uppercase tracking-widest rounded-full mb-3 shadow-md border border-accent/20">
-                  Featured
-                </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 font-serif drop-shadow-md">
-                  {slide.title}
-                </h2>
-                <p className="text-slate-200 text-lg max-w-2xl drop-shadow">
-                  {slide.caption}
-                </p>
+               
+                
               </div>
             </div>
           ))}
-
-          <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-white/10 hover:bg-white/30 backdrop-blur-md rounded-full text-white transition-all opacity-0 group-hover:opacity-100">
-            <ChevronLeft size={24} />
-          </button>
-          <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-white/10 hover:bg-white/30 backdrop-blur-md rounded-full text-white transition-all opacity-0 group-hover:opacity-100">
-            <ChevronRight size={24} />
-          </button>
-
+          
           <div className="absolute bottom-8 right-8 z-20 flex gap-2">
             {slides.map((_, idx) => (
               <button 
@@ -96,53 +82,60 @@ function HeroSection() {
         </div>
 
         {/* Right Column: Widgets */}
-        <div className="lg:col-span-4 flex flex-col gap-6">
-          
-          {/* Announcements Ticker Widget */}
-          <div className="bg-slate-900 rounded-3xl p-6 shadow-xl flex-1 flex flex-col relative overflow-hidden border border-slate-800">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/30 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
-            
-            <div className="relative z-10 flex items-center justify-between mb-4 border-b border-slate-700 pb-3">
-              <h3 className="font-bold flex items-center gap-2 text-lg !text-white select-none">
-                <Bell size={20} className="!text-white" /> Latest News
-              </h3>
-              <span className="text-xs bg-white/10 !text-white px-2 py-1 rounded-md font-medium backdrop-blur-sm select-none">Updates</span>
-            </div>
-            
-            <div className="relative z-10 flex-1 flex flex-col justify-center space-y-4">
-              <div className="group cursor-pointer">
-                <p className="text-xs !text-slate-300 font-bold mb-1 tracking-wider">MAR 6, 2026</p>
-                <h4 className="font-semibold text-sm leading-snug hover:!text-yellow-400 group-hover:!text-yellow-400 transition-colors !text-white">Library extending hours until 10PM for upcoming pre-final examinations.</h4>
-              </div>
-              <div className="w-full h-px bg-slate-700/50"></div>
-              <div className="group cursor-pointer">
-                <p className="text-xs !text-slate-300 font-bold mb-1 tracking-wider">MAR 2, 2026</p>
-                <h4 className="font-semibold text-sm leading-snug hover:!text-yellow-400 group-hover:!text-yellow-400 transition-colors !text-white">New mechanical engineering journals accessible via Knimbus gateway.</h4>
-              </div>
-            </div>
-            
-            <a href="/news-events" className="relative z-10 text-xs text-center mt-4 !text-slate-300 hover:!text-white font-semibold uppercase tracking-wider flex items-center justify-center gap-1 group transition-colors">
-               View All News <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
+       <div className="lg:col-span-4 flex flex-col gap-6">
+  
+  {/* Announcements Ticker Widget */}
+  <div className="bg-slate-900 rounded-[2rem] p-8 shadow-2xl flex-1 flex flex-col relative overflow-hidden border border-slate-800/50">
+    {/* Subtle Glow Effect */}
+    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+    
+    <div className="relative z-10 flex items-center justify-between mb-8 pb-4 border-b border-slate-800/50">
+      <h3 className="font-medium flex items-center gap-3 text-lg text-white select-none tracking-tight">
+      Latest News
+      </h3>
+      <span className="text-[10px] bg-white/5 text-blue-300 border border-white/10 px-3 py-1 rounded-full font-bold uppercase tracking-widest backdrop-blur-sm">Updates</span>
+    </div>
+    
+    <div className="relative z-10 flex-1 flex flex-col justify-center space-y-6">
+      <div className="group cursor-pointer">
+        <p className="text-[10px] text-slate-400 font-bold mb-2 tracking-[0.2em] uppercase">Mar 6, 2026</p>
+        <h4 className="font-light text-sm leading-relaxed text-slate-200 group-hover:text-yellow-400 transition-colors">
+          Library extending hours until <span className="font-semibold text-white group-hover:text-yellow-400">10PM</span> for upcoming pre-final examinations.
+        </h4>
+      </div>
+      
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-800 to-transparent"></div>
+      
+      <div className="group cursor-pointer">
+        <p className="text-[10px] text-slate-400 font-bold mb-2 tracking-[0.2em] uppercase">Mar 2, 2026</p>
+        <h4 className="font-light text-sm leading-relaxed text-slate-200 group-hover:text-yellow-400 transition-colors">
+          New mechanical engineering journals accessible via <span className="font-semibold text-white group-hover:text-yellow-400">Knimbus gateway</span>.
+        </h4>
+      </div>
+    </div>
+    
+    <a href="/news-events" className="relative z-10 text-[10px] text-center mt-8 text-slate-400 hover:text-white font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2 group transition-all">
+       View All News <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+    </a>
+  </div>
 
-          {/* Quick Action Grid */}
-          <div className="grid grid-cols-2 gap-3 flex-none">
-             <a href="/about/ask-a-librarian" className="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 transition-colors border border-emerald-100 shadow-sm group hover:shadow-md">
-                <div className="w-10 h-10 rounded-full bg-emerald-200 flex items-center justify-center text-emerald-700 group-hover:scale-110 group-hover:bg-emerald-300 transition-all">
-                  <Users size={20} />
-                </div>
-                <span className="text-xs font-bold">Ask Librarian</span>
-             </a>
-             <a href="/e-resources" className="bg-amber-50 hover:bg-amber-100 text-amber-800 p-4 rounded-2xl flex flex-col items-center justify-center text-center gap-2 transition-colors border border-amber-100 shadow-sm group hover:shadow-md">
-                <div className="w-10 h-10 rounded-full bg-amber-200 flex items-center justify-center text-amber-700 group-hover:scale-110 group-hover:bg-amber-300 transition-all">
-                  <Monitor size={20} />
-                </div>
-                <span className="text-xs font-bold">E-Resources</span>
-             </a>
-          </div>
-
+  {/* Quick Action Grid */}
+  <div className="grid grid-cols-2 gap-4 flex-none">
+     <a href="/about/ask-a-librarian" className="bg-emerald-50/50 hover:bg-emerald-100/80 text-emerald-900 p-6 rounded-[2rem] flex flex-col items-center justify-center text-center gap-3 transition-all border border-emerald-100 shadow-sm group hover:shadow-md hover:-translate-y-1">
+        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform shadow-sm">
+          <Users size={22} />
         </div>
+        <span className="text-[11px] font-bold uppercase tracking-wider opacity-90">Ask Staff</span>
+     </a>
+     <a href="/e-resources" className="bg-amber-50/50 hover:bg-amber-100/80 text-amber-900 p-6 rounded-[2rem] flex flex-col items-center justify-center text-center gap-3 transition-all border border-amber-100 shadow-sm group hover:shadow-md hover:-translate-y-1">
+        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-amber-600 group-hover:scale-110 transition-transform shadow-sm">
+          <Monitor size={22} />
+        </div>
+        <span className="text-[11px] font-bold uppercase tracking-wider opacity-90">E-Resources</span>
+     </a>
+  </div>
+
+</div>
       </div>
 
       {/* Bottom Block: Creative Full-Width Search Bar */}
@@ -179,7 +172,7 @@ function HeroSection() {
                    <Filter size={18} />
                  </div>
                  <select 
-                   className="w-full md:w-auto appearance-none bg-transparent text-slate-700 font-bold text-sm py-4 pl-12 pr-10 focus:outline-none cursor-pointer"
+                   className="w-full md:w-auto appearance-none bg-transparent text-slate-700 font-bold  text-sm py-4 pl-12 pr-10 focus:outline-none cursor-pointer"
                    value={activeCategory}
                    onChange={(e) => setActiveCategory(e.target.value)}
                  >
@@ -204,7 +197,7 @@ function HeroSection() {
                  />
                </div>
 
-               <button className="bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-amber-400 hover:to-amber-600 text-slate-900 px-12 py-4 md:py-0 rounded-xl md:rounded-full font-bold uppercase tracking-[0.2em] text-sm shadow-[0_4px_14px_rgba(252,211,77,0.4)] hover:shadow-[0_6px_20px_rgba(252,211,77,0.6)] hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 mt-2 md:mt-0 border border-yellow-300">
+               <button className="bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-amber-400 hover:to-amber-600 text-slate-900 px-12 py-4 md:py-0 rounded-xl md:rounded-full font-bold uppercase tracking-[0.2em] text-sm hover:shadow-[0_6px_20px_rgba(252,211,77,0.6)] hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 mt-2 md:mt-0 border border-yellow-300">
                  Search
                </button>
             </div>
@@ -217,6 +210,8 @@ function HeroSection() {
               <a href="#" className="hover:!text-white transition-colors underline decoration-white/20 underline-offset-4 hover:decoration-white">Clinical Trials</a>
             </div>
           </div>
+
+
 
         </div>
       </div>
