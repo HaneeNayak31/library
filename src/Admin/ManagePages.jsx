@@ -11,7 +11,6 @@ const ManagePages = () => {
     { id: 2, title: 'About Central Library', path: '/about/central-library', status: 'Published', lastUpdated: '2024-02-15' },
     { id: 3, title: 'Vision & Mission', path: '/about/vision-mission', status: 'Draft', lastUpdated: '2024-03-03' },
     { id: 4, title: 'Message from VC', path: '/about/message-from-vc', status: 'Published', lastUpdated: '2023-11-10' },
-    { id: 5, title: 'Services & Facilities', path: '/services-facilities', status: 'Published', lastUpdated: '2024-01-22' },
     { id: 6, title: 'Membership Protocol', path: '/membership-protocol', status: 'Published', lastUpdated: '2023-09-05' },
   ];
 

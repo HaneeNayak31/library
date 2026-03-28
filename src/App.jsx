@@ -18,7 +18,6 @@ import EResources from './Pages/EResources.jsx'
 import OpenAccessResources from './Pages/OpenAccessResources.jsx'
 import MembershipProtocol from './Pages/MembershipProtocol.jsx'
 import AskALibrarian from './Pages/AskALibrarian.jsx'
-import ServicesFacilities from './Pages/ServicesFacilities.jsx'
 import NewsEvents from './Pages/NewsEvents.jsx'
 import EventDetails from './Pages/EventDetails.jsx'
 
@@ -41,7 +40,7 @@ const PublicLayout = () => {
       <HeaderOPEN />
       <NavbarOPEN />
       <Breadcrumbs />
-      <main className="max-w-7xl mx-auto px-4 md:px-8 pt-1 pb-12 md:pt-1 md:pb-10">
+      <main className="max-w-7xl mx-auto px-4 md:px-8 pt-0 pb-12 md:pt-0 md:pb-10">
         <Outlet />
       </main>
       <Footer />
@@ -79,7 +78,6 @@ function App() {
         <Route path="about/library-committee" element={<LibraryCommittee />} />
         <Route path="about/procurement-procedure" element={<ProcurementProcedure />} />
         <Route path="about/ask-a-librarian" element={<AskALibrarian />} />
-        <Route path="services-facilities" element={<ServicesFacilities />} />
         <Route path="news-events" element={<NewsEvents />} />
         <Route path="news-events/:id" element={<EventDetails />} />
         <Route path="activity" element={<Activity />} />

@@ -14,8 +14,7 @@ const aboutSubLinks = [
 const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'About', path: '/about', hasDropdown: true },
-  { label: 'Services', path: '/services-facilities' },
-  { label: 'News & Events', path: '/news-events' },
+  { label: 'Activity', path: '/news-events' },
   { label: 'E-Resources', path: '/e-resources' },
   { label: 'Open Access', path: '/open-access-resources' },
   { label: 'Membership', path: '/membership-protocol' },

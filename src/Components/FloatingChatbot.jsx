@@ -37,11 +37,14 @@ const FloatingChatbot = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState(initialMessages);
   const [isTyping, setIsTyping] = useState(false);
-  const endRef = useRef(null);
+  const messagesContainerRef = useRef(null);
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isTyping]);
+    if (!isOpen) return;
+    const container = messagesContainerRef.current;
+    if (!container) return;
+    container.scrollTop = container.scrollHeight;
+  }, [messages, isTyping, isOpen]);
 
   const canSend = useMemo(() => input.trim().length > 0, [input]);
 
@@ -60,7 +63,7 @@ const FloatingChatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-9999 flex flex-col items-end">
+    <div className="fixed bottom-6 right-6 z-0 flex flex-col items-end">
       {/* Chat Window */}
       <div
         className={`mb-4 w-[min(24rem,90vw)] origin-bottom-right overflow-hidden rounded-3xl border border-slate-200 bg-white/95 shadow-2xl backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
@@ -97,7 +100,7 @@ const FloatingChatbot = () => {
         </div>
 
         {/* Message Area */}
-        <div className="h-80 space-y-4 overflow-y-auto bg-slate-50/50 px-5 py-6">
+        <div ref={messagesContainerRef} className="h-80 space-y-4 overflow-y-auto bg-slate-50/50 px-5 py-6">
           {messages.map((message) => (
             <div key={message.id} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm shadow-sm ${
@@ -118,7 +121,6 @@ const FloatingChatbot = () => {
                </div>
             </div>
           )}
-          <div ref={endRef} />
         </div>
 
         {/* Footer */}

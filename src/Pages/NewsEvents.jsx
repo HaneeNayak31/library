@@ -38,7 +38,7 @@ const NewsEvents = () => {
       status: 'past',
       title: 'Orientation for New Students',
       type: 'Event',
-      imageUrl: 'https://images.pexels.com/photos/1370215/pexels-photo-1370215.jpeg?auto=compress&cs=tinysrgb&w=800',
+      imageUrl: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
       description: 'A comprehensive welcome session to introduce new students to the library facilities, digital resources, and support services available throughout their academic journey.',
     },
     {
@@ -47,7 +47,7 @@ const NewsEvents = () => {
       status: 'past',
       title: 'Seminar on Academic Integrity',
       type: 'Seminar',
-      imageUrl: 'https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&w=800',
+      imageUrl: 'https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg/',
       description: 'A vital seminar discussing the importance of academic honesty, proper citation practices, and understanding the consequences of plagiarism in research and coursework.',
     }
   ];
@@ -57,8 +57,7 @@ const NewsEvents = () => {
   return (
     <div className="bg-slate-50 min-h-screen pb-1">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1">
-        <h1 className="text-4xl font-serif font-bold text-primary mb-6">News & Events</h1>
-        
+       
         {/* Tabs */}
         <div className="flex space-x-4 border-b border-slate-200 mb-8">
           <button
