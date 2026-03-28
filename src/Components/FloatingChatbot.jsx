@@ -63,7 +63,7 @@ const FloatingChatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-0 flex flex-col items-end">
+    <div className="fixed bottom-6 right-6 z-9999 flex flex-col items-end">
       {/* Chat Window */}
       <div
         className={`mb-4 w-[min(24rem,90vw)] origin-bottom-right overflow-hidden rounded-3xl border border-slate-200 bg-white/95 shadow-2xl backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
