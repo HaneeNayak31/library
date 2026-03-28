@@ -51,11 +51,11 @@ const AskALibrarian = () => {
              <form className="space-y-4">
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-1">Your Name</label>
-                  <input type="text" className="w-full p-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="John Doe" />
+                  <input type="text" className="w-full p-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/50"  />
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-1">Email Address</label>
-                  <input type="email" className="w-full p-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="john@example.com" />
+                  <input type="email" className="w-full p-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/50"  />
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-1">How can we help?</label>

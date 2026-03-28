@@ -8,17 +8,17 @@ function HeroSection() {
   // High-quality library images for the carousel
   const slides = [
     {
-      url: "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&q=80&w=1200",
+      url: "https://media.gettyimages.com/id/172919971/photo/community-library-brick-building-front-entrance.jpg?s=612x612&w=0&k=20&c=WaAVxtmWTit_kUxMPE1TvuEzpOl9Oj_VDOw8XMxtdeY=",
       caption: "Explore our vast digital archives from anywhere.",
       title: "Digital Database Access"
     },
     {
-      url: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&q=80&w=1200",
+      url: "https://i.pinimg.com/control1/1200x/a0/45/14/a045141e41086118c316c58e97af66a5.jpg",
       caption: "Quiet reading rooms reserved for postgraduate research.",
       title: "Dedicated Study Spaces"
     },
     {
-      url: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&q=80&w=1200",
+      url: "https://i.pinimg.com/1200x/17/b6/39/17b639d369d38cac7f844916f8cf4af8.jpg",
       caption: "Over 25,000 new engineering and technology volumes added this year.",
       title: "Expanding Collections"
     }
@@ -120,20 +120,28 @@ function HeroSection() {
   </div>
 
   {/* Quick Action Grid */}
-  <div className="grid grid-cols-2 gap-4 flex-none">
-     <a href="/about/ask-a-librarian" className="bg-emerald-50/50 hover:bg-emerald-100/80 text-emerald-900 p-6 rounded-[2rem] flex flex-col items-center justify-center text-center gap-3 transition-all border border-emerald-100 shadow-sm group hover:shadow-md hover:-translate-y-1">
-        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform shadow-sm">
-          <Users size={22} />
-        </div>
-        <span className="text-[11px] font-bold uppercase tracking-wider opacity-90">Ask Staff</span>
-     </a>
-     <a href="/e-resources" className="bg-amber-50/50 hover:bg-amber-100/80 text-amber-900 p-6 rounded-[2rem] flex flex-col items-center justify-center text-center gap-3 transition-all border border-amber-100 shadow-sm group hover:shadow-md hover:-translate-y-1">
-        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-amber-600 group-hover:scale-110 transition-transform shadow-sm">
-          <Monitor size={22} />
-        </div>
-        <span className="text-[11px] font-bold uppercase tracking-wider opacity-90">E-Resources</span>
-     </a>
-  </div>
+  {/* Quick Action Grid */}
+<div className="grid grid-cols-2 gap-4 flex-none relative z-30"> {/* Increased z-index to 30 */}
+  <a 
+    href="/about/ask-a-librarian" 
+    className="bg-emerald-50/50 hover:bg-emerald-100/80 text-emerald-900 p-6 rounded-[2rem] flex flex-col items-center justify-center text-center gap-3 transition-all border border-emerald-100 shadow-sm group hover:shadow-md hover:-translate-y-1 cursor-pointer"
+  >
+    <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform shadow-sm">
+      <Users size={22} />
+    </div>
+    <span className="text-[11px] font-bold uppercase tracking-wider opacity-90">Ask Staff</span>
+  </a>
+
+  <a 
+    href="/e-resources" 
+    className="bg-amber-50/50 hover:bg-amber-100/80 text-amber-900 p-6 rounded-[2rem] flex flex-col items-center justify-center text-center gap-3 transition-all border border-amber-100 shadow-sm group hover:shadow-md hover:-translate-y-1 cursor-pointer"
+  >
+    <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-amber-600 group-hover:scale-110 transition-transform shadow-sm">
+      <Monitor size={22} /> 
+    </div>
+    <span className="text-[11px] font-bold uppercase tracking-wider opacity-90">E-Resources</span>
+  </a>
+</div>
 
 </div>
       </div>

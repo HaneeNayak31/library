@@ -1,113 +1,122 @@
-import React from 'react'
+import React from 'react';
+import { BookOpen, UserCheck, ShieldAlert, Clock, Info } from 'lucide-react'; // Using Lucide for icons
 
 const MembershipProtocol = () => {
   return (
-    <div className="bg-slate-50 min-h-screen font-sans antialiased py-8 text-slate-800">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+    <div className="bg-[#f8fafc] min-h-screen font-sans antialiased text-slate-800 pb-20">
+      {/* Decorative Background Element */}
+      <div className="absolute top-0 left-0 w-full h-64 bg-linear-to-b from-slate-200/50 to-transparent -z-10" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-2">
         
-        {/* Header Section */}
-         <div className="text-center mb-12">
-          <div className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-primary uppercase bg-accent/20 rounded-full border border-accent/20">
-            Rules & Regulations
-          </div>
-          <h1 className="text-3xl md:text-5xl font-extrabold text-primary tracking-tight mb-4 font-serif">
-            Membership & Protocol
-          </h1>
-          <p className="text-lg text-slate-600 leading-relaxed">
-            Guidelines to ensure smooth functioning and equal access to library resources for all members.
-          </p>
-        </div>
-
-        {/* Content Container */}
-        <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
+        {/* Hero Header Section */}
+        <header className="max-w-3xl mb-16">
           
-          {/* Section 1: Membership Eligibility */}
-          <div className="p-8 md:p-12 border-b border-slate-100">
-            <h2 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3 font-serif">
-              <span className="w-1.5 h-8 bg-accent rounded-full"></span>
-              Membership Eligibility
-            </h2>
-            <p className="text-slate-600 mb-4">
-              Membership is open to all students, faculty, and staff of Gujarat Technological University. To become a member, please fill out the membership form and submit it along with:
-            </p>
-            <ul className="list-disc list-inside space-y-2 text-slate-700 bg-slate-50 p-6 rounded-xl border border-slate-100">
-              <li>A copy of your Fee Receipt (for students)</li>
-              <li>Appointment Order / ID Proof (for faculty & staff)</li>
-              <li>Note: <span className="font-semibold text-primary">Library Smart Card</span> is mandatory for circulation.</li>
-            </ul>
+          <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight mb-6 leading-[1.1]">
+            Membership & <span className="text-[#FFD700]">Borrowing Guidelines</span>
+          </h1>
+        </header>
+
+        {/* Main Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          {/* Left Column: Eligibility & Rules */}
+          <div className="lg:col-span-7 space-y-8">
+            
+            {/* Section 1: Eligibility */}
+            <section className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-slate-200 transition-all hover:shadow-md">
+              <div className="flex items-center gap-4  mb-8">
+                <h2 className="text-2xl font-bold text-slate-900">Membership Eligibility</h2>
+              </div>
+              
+              <p className="text-slate-600 mb-8 text-lg">
+                Open to students, faculty, and staff. Please submit the following documents with your application:
+              </p>
+              
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                  <h4 className="font-bold text-blue-700 mb-1">For Students</h4>
+                  <p className="text-sm text-slate-600">Enter HeRE</p>
+                </div>
+                <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                  <h4 className="font-bold text-blue-700 mb-1">For Faculty</h4>
+                  <p className="text-sm text-slate-600">Enter here</p>
+                </div>
+              </div>
+
+              <div className="mt-8 flex items-start gap-3 p-4 bg-amber-50 rounded-xl border border-amber-100">
+                <Info className="text-amber-600 mt-1 shrink-0" size={20} />
+                <p className="text-sm text-amber-800">
+                  <span className="font-bold uppercase tracking-tight">Mandatory:</span> The Library Smart Card is required for all book circulation and entry logs.
+                </p>
+              </div>
+            </section>
+
+            {/* Section 3: General Rules (Moved up for layout balance) */}
+            <section className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-slate-200">
+              <h2 className="text-2xl font-bold text-slate-900 mb-8">General Conduct</h2>
+              <div className="space-y-6">
+                {[
+                  { id: '01', text: 'Strict silence must be maintained. Mobiles on silent mode.', icon: <Clock size={18}/> },
+                  { id: '02', text: 'Personal belongings should be deposited at the property counter.', icon: <BookOpen size={18}/> },
+                  { id: '03', text: 'Reference books and journals are for in-library use only.', icon: <ShieldAlert size={18}/> },
+                  { id: '04', text: 'Late returns incur a fine of ₹1.00 per day, per book.', icon: <Info size={18}/> },
+                ].map((rule) => (
+                  <div key={rule.id} className="group flex gap-5 items-start">
+                    <span className="flex-none w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-500 group-hover:bg-[#FFD700] group-hover:text-white transition-colors">
+                      {rule.id}
+                    </span>
+                    <p className="text-slate-700 leading-snug pt-1">{rule.text}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
           </div>
 
-          {/* Section 2: Borrowing Privileges Table */}
-          <div className="p-8 md:p-12 bg-slate-50/50 border-b border-slate-100">
-             <h2 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3 font-serif">
-              <span className="w-1.5 h-8 bg-accent rounded-full"></span>
-              Borrowing Privileges
-            </h2>
-            <div className="overflow-x-auto rounded-xl shadow-sm border border-slate-200 bg-white">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="bg-primary text-white text-sm uppercase tracking-wider">
-                    <th className="p-4 border-b border-blue-800">User Category</th>
-                    <th className="p-4 border-b border-blue-800">No. of Books</th>
-                    <th className="p-4 border-b border-blue-800">Loan Period</th>
-                  </tr>
-                </thead>
-                <tbody className="text-sm text-slate-700 divide-y divide-slate-100">
-                  <tr className="hover:bg-blue-50/50 transition-colors">
-                    <td className="p-4 font-semibold">Faculty / Staff</td>
-                    <td className="p-4">02</td>
-                    <td className="p-4">30 Days</td>
-                  </tr>
-                  <tr className="hover:bg-blue-50/50 transition-colors">
-                    <td className="p-4 font-semibold">PhD Scholars</td>
-                    <td className="p-4">02</td>
-                    <td className="p-4">30 Days</td>
-                  </tr>
-                   <tr className="hover:bg-blue-50/50 transition-colors">
-                    <td className="p-4 font-semibold">PG Students</td>
-                    <td className="p-4">02</td>
-                    <td className="p-4">15 Days</td>
-                  </tr>
-                   <tr className="hover:bg-blue-50/50 transition-colors">
-                    <td className="p-4 font-semibold">UG Students</td>
-                    <td className="p-4">02</td>
-                    <td className="p-4">15 Days</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+          {/* Right Column: Table Sticky Sidebar */}
+          <div className="lg:col-span-5">
+            <div className="sticky top-22 bg-slate-900 rounded-[2rem] p-8 text-white shadow-2xl overflow-hidden">
+              {/* Decorative Glow */}
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-blue-500/20 blur-[80px] rounded-full" />
+              
+              <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
+                <BookOpen className="text-blue-100" />
+                Borrowing Privileges
+              </h2>
 
-          {/* Section 3: General Rules */}
-          <div className="p-8 md:p-12">
-            <h2 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3 font-serif">
-              <span className="w-1.5 h-8 bg-accent rounded-full"></span>
-              General Rules & Conduct
-            </h2>
-            <div className="space-y-4 text-slate-700 leading-relaxed">
-               <div className="flex gap-4">
-                 <span className="font-bold text-accent text-xl">01</span>
-                 <p>Silence must be strictly observed in the library premises. Mobile phones should be kept on silent mode.</p>
-               </div>
-               <div className="flex gap-4">
-                 <span className="font-bold text-accent text-xl">02</span>
-                 <p>Bags, umbrellas, and personal books should be kept at the property counter. The library is not responsible for valuables left there.</p>
-               </div>
-               <div className="flex gap-4">
-                 <span className="font-bold text-accent text-xl">03</span>
-                 <p>Reference books, journals, and theses are for consultation within the library only and cannot be issued out.</p>
-               </div>
-               <div className="flex gap-4">
-                 <span className="font-bold text-accent text-xl">04</span>
-                 <p>Late return of books will attract a fine of <span className="font-bold text-primary">₹1.00 per day</span> per book.</p>
-               </div>
+              <div className="space-y-4">
+                <div className="grid grid-cols-3 text-xs font-bold uppercase tracking-widest text-slate-400 pb-2 border-b border-slate-800">
+                  <span>Category</span>
+                  <span className="text-center">Books</span>
+                  <span className="text-right">Period</span>
+                </div>
+                
+                {[
+                  { cat: 'Faculty', count: '02', days: '30 Days' },
+                  { cat: 'PhD Scholars', count: '02', days: '30 Days' },
+                  { cat: 'PG Students', count: '02', days: '15 Days' },
+                  { cat: 'UG Students', count: '02', days: '15 Days' },
+                ].map((row, idx) => (
+                  <div key={idx} className="grid grid-cols-3 py-4 border-b border-slate-800/50 items-center hover:bg-white/5 transition-colors rounded-lg px-2 -mx-2">
+                    <span className="font-medium text-slate-200">{row.cat}</span>
+                    <span className="text-center font-mono text-blue-400">{row.count}</span>
+                    <span className="text-right text-slate-300">{row.days}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-12 p-6 bg-white/5 rounded-2xl border border-white/10">
+                <p className="text-sm text-slate-400 italic">
+                  * Circulation policies are subject to change per the University Library Committee's annual review.
+                </p>
+              </div>
             </div>
           </div>
 
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MembershipProtocol
+export default MembershipProtocol;

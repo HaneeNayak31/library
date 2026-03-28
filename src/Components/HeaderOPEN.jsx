@@ -21,7 +21,7 @@ function HeaderOPEN() {
               <h2 className="font-bold text-slate-900 uppercase leading-none whitespace-nowrap truncate" style={{ fontSize: 'clamp(15px, 1.6vw, 25px)' }}>
                 Gujarat Technological University
               </h2>
-              <p className="font-semibold text-blue-700 uppercase tracking-widest pl-35  whitespace-nowrap truncate" style={{ fontSize: 'clamp(8px, 1vw, 10px)' }}>
+              <p className="font-semibold text-blue-700 uppercase tracking-widest pl-28  whitespace-nowrap truncate" style={{ fontSize: 'clamp(8px, 1vw, 10px)' }}>
                 An International Innovative University
               </p>
             </div>

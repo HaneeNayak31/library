@@ -55,8 +55,8 @@ const NewsEvents = () => {
   const filteredEvents = events.filter(event => event.status === activeTab);
 
   return (
-    <div className="bg-slate-50 min-h-screen pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <div className="bg-slate-50 min-h-screen pb-1">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1">
         <h1 className="text-4xl font-serif font-bold text-primary mb-6">News & Events</h1>
         
         {/* Tabs */}

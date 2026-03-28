@@ -4,10 +4,10 @@ import HeroSection from '../Components/HeroSection'
 
 function Landing() {
   const newArrivals = [
-    { title: "Quantum Computing", author: "Dr. Aris Thorne", cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=300", tag: "Engineering" },
-    { title: "Modern Architecture", author: "Sarah Jenkins", cover: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=300", tag: "Design" },
-    { title: "The AI Revolution", author: "Leo Max", cover: "https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=300", tag: "Technology" },
-    { title: "Biotech Ethics", author: "Elena Rossi", cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=300", tag: "Pharmacy" },
+    { title: "Quantum Computing", author: "Dr. Aris Thorne", cover: "https://images.pexels.com/photos/36251552/pexels-photo-36251552.jpeg", tag: "Engineering" },
+    { title: "Modern Architecture", author: "Sarah Jenkins", cover: "https://imgs.search.brave.com/WZBtvP5dz10_R6TE9qHtFy2GEPAfh79A-bIKV6WvYRY/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9taXIt/czMtY2RuLWNmLmJl/aGFuY2UubmV0L3By/b2plY3RzLzQwNC80/ZWY0YTEyNDEyMjk5/NDcuWTNKdmNDd3hO/REF3TERFd09UVXNN/Q3d4TncuanBn", tag: "Design" },
+    { title: "The AI Revolution", author: "Leo Max", cover: "https://imgs.search.brave.com/JvAGVJlVZJc40y54GajIUSD1cICoh6uzwe5z0XdkxLM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9ib29rLWNvdmVy/LWRlc2lnbi1tZW1v/aXItd2l0aC1wZXJz/b25hbC10b3VjaGVz/XzExMDQ3NjMtMzUw/NDMuanBnP3NlbXQ9/YWlzX2h5YnJpZCZ3/PTc0MCZxPTgw", tag: "Technology" },
+    { title: "Biotech Ethics", author: "Elena Rossi", cover: "https://imgs.search.brave.com/9WaUWN3sQq7CCKgUe8xjKdlpyAfDHCJFCraYIfB5Mlc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMucGV4ZWxzLmNv/bS9waG90b3MvMjI5/NDQwNy9wZXhlbHMt/cGhvdG8tMjI5NDQw/Ny5qcGVnP2F1dG89/Y29tcHJlc3MmY3M9/dGlueXNyZ2ImZHBy/PTEmdz01MDA", tag: "Pharmacy" },
   ];
 
   const quotes = [
@@ -25,7 +25,6 @@ function Landing() {
 
   return (
     <div className="space-y-24 pb-20 overflow-x-hidden bg-white">
-      {/* Hero Search Section */}
       <HeroSection />
 
       {/* --- SECTION 1: NEW ARRIVALS --- */}
@@ -79,7 +78,7 @@ function Landing() {
                 <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400">
                     {staticQuote.author}
                 </p>
-                <div className="h-[1px] w-10 bg-slate-200"></div>
+                <div className="h-px w-10 bg-slate-200"></div>
             </div>
         </div>
       </section>
