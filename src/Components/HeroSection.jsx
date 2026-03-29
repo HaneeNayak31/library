@@ -1,6 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Search, BookOpen, Monitor, Users, Clock, ChevronRight, ChevronLeft, Bell, ArrowRight, Filter } from 'lucide-react';
+import { Search, BookOpen, Monitor,Star,Bell, Users, Clock, ChevronRight, ArrowRight, Filter } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const book = {
+  title: "Atomic Habits",
+  author: "James Clear",
+  rating: 4.8,
+  description: "Build good habits, break bad ones, and master tiny behaviors that lead to remarkable results.",
+  cover: "https://images-na.ssl-images-amazon.com/images/I/91bYsX41DVL.jpg"
+};
+
+
+   
+  
 
 const HERO_SLIDES = [
   {
@@ -110,65 +122,97 @@ function HeroSection() {
           </div>
         </div>
 
-        {/* Right Column: Widgets */}
-      <div className="lg:col-span-4 relative z-20 flex flex-col gap-5">
-        <div className="bg-white rounded-4xl p-4 md:p-5 flex-1 flex flex-col border border-neutral-300">
-          <div className="flex items-center justify-between mb-6 pb-3 border-b border-slate-200">
-            <h3 className="font-semibold text-lg text-slate-900 tracking-tight">Latest News</h3>
-            <span className="text-[10px] bg-slate-100 text-blue-600 px-3 py-1 rounded-full font-semibold uppercase tracking-widest">Updates</span>
-          </div>
-
-          <div className="flex-1 flex flex-col justify-center space-y-4">
-            <Link
-              to={`/news-events/${latestNews[0].id}`}
-              className="group block rounded-xl p-2 -m-2 hover:bg-slate-50 hover:shadow-sm hover:ring-1 hover:ring-slate-200 transition-all"
-            >
-              <p className="text-[10px] text-slate-400 font-semibold mb-2 tracking-[0.25em] uppercase">{latestNews[0].date}</p>
-              <h4 className="text-sm leading-relaxed text-slate-700 group-hover:text-slate-900 transition">{latestNews[0].summary}</h4>
-            </Link>
-
-            <div className="w-full h-px bg-slate-200"></div>
-
-            <Link
-              to={`/news-events/${latestNews[1].id}`}
-              className="group block rounded-xl p-2 -m-2 hover:bg-slate-50 hover:shadow-sm hover:ring-1 hover:ring-slate-200 transition-all"
-            >
-              <p className="text-[10px] text-slate-400 font-semibold mb-2 tracking-[0.25em] uppercase">{latestNews[1].date}</p>
-              <h4 className="text-sm leading-relaxed text-slate-700 group-hover:text-slate-900 transition">{latestNews[1].summary}</h4>
-            </Link>
-          </div>
-
-          <Link
-            to="/news-events"
-            className="text-[10px] mt-5 text-slate-500 hover:text-slate-900 font-semibold uppercase tracking-[0.25em] flex items-center justify-center gap-2 group transition"
-          >
-            View All News
-            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 flex-none">
-          <Link
-            to="/about/ask-a-librarian"
-            className="bg-emerald-100/50 hover:bg-slate-50 text-slate-900 p-4 md:p-5 rounded-4xl flex flex-col items-center justify-center text-center gap-2.5 transition-all duration-300 border border-slate-200 group hover:-translate-y-1 hover:shadow-md hover:border-emerald-200"
-          >
-            <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform">
-              <Users size={22} />
-            </div>
-            <span className="text-[11px] font-semibold uppercase tracking-wider">Ask Staff</span>
-          </Link>
-
-          <Link
-            to="/e-resources"
-            className="relative z-50 pointer-events-auto bg-amber-100/30 hover:bg-slate-50 text-slate-900 p-4 md:p-5 rounded-4xl flex flex-col items-center justify-center text-center gap-2.5 transition-all duration-300 border border-slate-200 group hover:-translate-y-1 hover:shadow-md hover:border-amber-200"
-          >
-            <div className="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-600 group-hover:scale-110 transition-transform">
-              <Monitor size={22} />
-            </div>
-            <span className="text-[11px] font-semibold uppercase tracking-wider">E-Resources</span>
-          </Link>
-        </div>
+      {/* Right Column: Widgets */}
+<div className="lg:col-span-4 flex flex-col gap-4 h-full">
+  
+  {/* 1. Updates Widget - Flexible Height, White with Blue Glow */}
+  <div className="flex-1 min-h-0 bg-white rounded-[2.5rem] p-6 flex flex-col transition-all duration-300 hover:shadow-[0_20px_60px_-10px_rgba(59,130,246,0.1)] hover:border-blue-100 border border-neutral-500/70 relative">
+    {/* Header */}
+    <div className="flex items-center justify-between mb-6 shrink-0">
+      <h3 className="flex items-center gap-2 text-slate-900 font-bold text-sm tracking-tight">
+        
+        Updates
+      </h3>
+      <div className="flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 rounded-full border border-blue-100">
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500"></span>
+        </span>
+        <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600">Live</span>
       </div>
+    </div>
+
+    {/* Scrollable / Flexible List (Capped at 4) */}
+    <div className="flex-1 flex flex-col justify-between">
+      <div className="space-y-5">
+        {[
+          { color: 'bg-blue-500', text: 'Library extended till', bold: '10PM', sub: 'for exams' },
+          { color: 'bg-emerald-500', text: 'New IEEE journals', bold: 'added', sub: 'to digital' },
+          { color: 'bg-amber-500', text: 'Campus Wi-Fi', bold: 'Maintenance', sub: 'at midnight' },
+          { color: 'bg-purple-500', text: 'Workshop:', bold: 'UI Design', sub: 'starts Friday' },
+        ].map((item, i) => (
+          <div key={i} className="group cursor-default flex gap-4 items-start">
+            <div className={`mt-1.5 w-1.5 h-1.5 rounded-full ${item.color} shrink-0 group-hover:scale-150 transition-transform`} />
+            <div className="flex flex-col min-w-0">
+              <p className="text-xs text-slate-600 leading-snug">
+                {item.text} <span className="font-bold text-slate-900">{item.bold}</span> {item.sub}
+              </p>
+              <span className="text-[10px] text-slate-400 mt-0.5">2h ago</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Footer link to keep the box feeling full */}
+      <button className="mt-6 w-full py-2 border-t border-slate-100 text-[11px] font-bold text-slate-400 hover:text-blue-600 transition-colors uppercase tracking-widest">
+        View All Notifications
+      </button>
+    </div>
+  </div>
+
+  {/* 2. Book Widget - Compact Anchor, White with Blue Glow */}
+  <div className="group relative flex items-center gap-4 p-4 rounded-2xl bg-white/70 backdrop-blur-md border border-slate-200/60 hover:shadow-md transition-all duration-300">
+
+  {/* Cover */}
+  <img
+    src="https://imgs.search.brave.com/KrwatppL0Vxxt8fgFvqKTAhSfxVHgJ8fnw95FSgVOhM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NTFqNEEwVGIyUEwu/anBn"
+    alt="Sorathi Baharvatiya"
+    className="w-14 h-20 border border-gray-300  object-cover shadow-sm "
+  />
+
+  {/* Content */}
+  <div className="flex flex-col flex-1 min-w-0">
+
+    <span className="text-[9px] uppercase tracking-widest text-slate-400 mb-1">
+      Book of the Day
+    </span>
+
+    <h3 className="text-sm font-semibold text-slate-900 truncate">
+      Sorathi Baharvatiya 
+    </h3>
+
+    <p className="text-[11px] text-slate-500 truncate">
+      zaverchand meghani 
+    </p>
+
+    {/* Bottom Row */}
+    <div className="flex items-center justify-between mt-2">
+
+      <span className="text-[11px] text-slate-400">
+        ★ 4.8
+      </span>
+
+      <button className="text-[11px] font-medium text-blue-600 hover:text-blue-700 transition flex items-center gap-1">
+        View
+        <span className="transition-transform duration-300 group-hover:translate-x-1">
+          →
+        </span>
+      </button>
+
+    </div>
+  </div>
+</div>
+</div>
       </div>
 
       {/* Bottom Block: Creative Full-Width Search Bar */}
